@@ -15,4 +15,3 @@ no-wildcard-import=enabled: 와일드카드 임포트를 허용하지 않도록 
 [*.{kt,kts}]: Kotlin 및 Kotlin 스크립트 파일에 대한 설정입니다.
 ij_kotlin_allow_trailing_comma = true: IntelliJ IDEA에서 콤마 뒤에 공백을 허용하는 옵션입니다.
 ```
-
