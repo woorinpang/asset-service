@@ -1,16 +1,12 @@
-package io.woorinpang.assetservice.core.domain.asset
+package io.woorinpang.assetservice.core.domain.support.entity
 
-import jakarta.persistence.Column
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
-import jakarta.persistence.MappedSuperclass
+import jakarta.persistence.*
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
 import java.time.LocalDateTime
 
 @MappedSuperclass
-class BaseEntity {
+abstract class BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null

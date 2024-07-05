@@ -6,7 +6,10 @@ import org.springframework.stereotype.Service
 class AssetService(
     val assetAppender: AssetAppender
 ) {
-    fun appendAsset(assetName : String) : Long? {
-        return assetAppender.append(assetName)
+    fun appendAsset(assetType : String) : Long? {
+        AssetType.findByCode(assetType)?.let {
+            return assetAppender.append(it)
+        }
+        throw IllegalArgumentException("Invalid asset type: $assetType")
     }
 }
