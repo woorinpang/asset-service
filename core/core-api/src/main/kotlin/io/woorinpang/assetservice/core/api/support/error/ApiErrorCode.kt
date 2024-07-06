@@ -1,5 +1,5 @@
 package io.woorinpang.assetservice.core.api.support.error
 
-enum class ErrorCode {
+enum class ApiErrorCode {
     E500
 }
