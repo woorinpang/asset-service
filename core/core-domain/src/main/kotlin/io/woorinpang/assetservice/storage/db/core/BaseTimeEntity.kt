@@ -1,4 +1,4 @@
-package io.woorinpang.assetservice.admin.support.entity
+package io.woorinpang.assetservice.storage.db.core
 
 import jakarta.persistence.*
 import org.hibernate.annotations.CreationTimestamp
@@ -6,7 +6,7 @@ import org.hibernate.annotations.UpdateTimestamp
 import java.time.LocalDateTime
 
 @MappedSuperclass
-abstract class AdminBaseTimeEntity {
+abstract class BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null

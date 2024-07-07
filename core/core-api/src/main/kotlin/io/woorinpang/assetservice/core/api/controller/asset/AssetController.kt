@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/assets")
 class AssetController(
-    val assetService: AssetService
+    val assetService: AssetService,
 ) {
     @PostMapping
     fun createAsset(
-        @RequestBody request : AppendAssetRequest
-    ) : ResponseEntity<Long> {
+        @RequestBody request: AppendAssetRequest,
+    ): ResponseEntity<Long> {
         val result = assetService.appendAsset(request.assetType)
         return ResponseEntity.ok().body(result)
     }

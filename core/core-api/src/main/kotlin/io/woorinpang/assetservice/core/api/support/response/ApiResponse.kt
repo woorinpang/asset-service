@@ -6,8 +6,8 @@ import io.woorinpang.assetservice.core.api.support.error.ApiErrorType
 data class ApiResponse<T> private constructor(
     val result: ResultType,
     val data: T? = null,
-    val error: ApiErrorMessage? = null
-){
+    val error: ApiErrorMessage? = null,
+) {
     companion object {
         fun success(): ApiResponse<Any> {
             return ApiResponse(ResultType.SUCCESS, null, null)
@@ -17,7 +17,10 @@ data class ApiResponse<T> private constructor(
             return ApiResponse(ResultType.SUCCESS, data, null)
         }
 
-        fun <S> error(error: ApiErrorType, errorData: Any? = null): ApiResponse<S> {
+        fun <S> error(
+            error: ApiErrorType,
+            errorData: Any? = null,
+        ): ApiResponse<S> {
             return ApiResponse(ResultType.ERROR, null, ApiErrorMessage(error, errorData))
         }
     }

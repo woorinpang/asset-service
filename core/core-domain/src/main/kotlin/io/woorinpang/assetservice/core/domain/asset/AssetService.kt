@@ -4,9 +4,9 @@ import org.springframework.stereotype.Service
 
 @Service
 class AssetService(
-    val assetAppender: AssetAppender
+    val assetAppender: AssetAppender,
 ) {
-    fun appendAsset(assetType : String) : Long? {
+    fun appendAsset(assetType: String): Long? {
         AssetType.findByCode(assetType)?.let {
             return assetAppender.append(it)
         }
