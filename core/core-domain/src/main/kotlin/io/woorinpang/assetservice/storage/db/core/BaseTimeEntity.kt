@@ -1,4 +1,4 @@
-package io.woorinpang.assetservice.core.domain.support.entity
+package io.woorinpang.assetservice.storage.db.core
 
 import jakarta.persistence.*
 import org.hibernate.annotations.CreationTimestamp

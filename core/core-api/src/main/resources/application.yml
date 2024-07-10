@@ -13,10 +13,14 @@ spring:
     import:
       - optional:configserver:http://localhost:8888
       - core-domain.yml
+      - storage-db-core.yml
   web.resources.add-mappings: false
 
 ---
 spring.config.activate.on-profile: local
+
+server:
+  port: 9040
 
 
 

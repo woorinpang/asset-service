@@ -3,9 +3,7 @@ rootProject.name = "WRP-ASSET-SERVICE"
 include(
     "core:core-api",
     "core:core-domain",
-    "core:core-enum",
-
-    "admin-api"
+    "admin-api",
 )
 
 pluginManagement {

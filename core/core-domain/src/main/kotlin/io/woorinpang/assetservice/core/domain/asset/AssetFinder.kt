@@ -6,12 +6,11 @@ import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
 
 @Component
-class AssetAppender(
-    val assetRepository: AssetRepository,
+class AssetFinder(
+    val assetRepository: AssetRepository
 ) {
-    @Transactional
-    fun append(assetType: AssetType): Long {
-        return assetRepository.save(Asset.of(userId = 1L, type = assetType, )).id
-            ?: throw IllegalArgumentException("Failed to append asset")
+    @Transactional(readOnly = true)
+    fun find(assetId: Long): Asset {
+        return assetRepository.findById(assetId).orElseThrow { IllegalArgumentException("Invalid asset id: $assetId") }
     }
 }

@@ -1,4 +1,4 @@
-package io.woorinpang.assetservice.core.domain.config
+package io.woorinpang.assetservice.storage.db.core.config
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
 @Configuration
-class CoreDataSourceConfig {
+internal class CoreDataSourceConfig {
     @Bean
     @ConfigurationProperties(prefix = "storage.datasource.core")
     fun coreHikariConfig(): HikariConfig {
@@ -16,7 +16,9 @@ class CoreDataSourceConfig {
     }
 
     @Bean
-    fun coreDataSource(@Qualifier("coreHikariConfig") hikariConfig: HikariConfig?): HikariDataSource {
+    fun coreDataSource(
+        @Qualifier("coreHikariConfig") hikariConfig: HikariConfig?,
+    ): HikariDataSource {
         return HikariDataSource(hikariConfig)
     }
 }
