@@ -11,7 +11,25 @@ import jakarta.persistence.Enumerated
 class Asset(
     @Column
     val userId: Long,
+
     @Enumerated(EnumType.STRING)
     @Column(name = "assetType")
     val type: AssetType,
-) : BaseEntity()
+
+    @Column(name = "deleted")
+    private var deleted: Boolean
+) : BaseEntity() {
+    companion object {
+        fun of(userId: Long, type: AssetType): Asset {
+            return Asset(
+                userId = userId,
+                type = type,
+                deleted = false
+            )
+        }
+    }
+
+    fun delete() {
+        this.deleted = true
+    }
+}
