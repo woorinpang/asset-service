@@ -7,7 +7,8 @@ import org.springframework.stereotype.Service
 class AssetService(
     val assetAppender: AssetAppender,
     val assetFinder: AssetFinder,
-    val assetRemover: AssetRemover
+    val assetRemover: AssetRemover,
+    val assetModifier: AssetModifier,
 ) {
     fun appendAsset(assetType: String): Long {
         AssetType.findByCode(assetType)?.let {
@@ -18,6 +19,10 @@ class AssetService(
 
     fun findAsset(assetId: Long): Asset {
         return assetFinder.find(assetId)
+    }
+
+    fun modifyAsset(assetId: Long, assetType: String) {
+        assetModifier.modify(assetId, assetType)
     }
 
     fun deleteAsset(assetId: Long): Any {

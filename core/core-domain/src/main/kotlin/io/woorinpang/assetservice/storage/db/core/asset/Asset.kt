@@ -14,7 +14,7 @@ class Asset(
 
     @Enumerated(EnumType.STRING)
     @Column(name = "assetType")
-    val type: AssetType,
+    private var type: AssetType,
 
     @Column(name = "deleted")
     private var deleted: Boolean
@@ -31,5 +31,9 @@ class Asset(
 
     fun delete() {
         this.deleted = true
+    }
+
+    fun modify(assetType: AssetType) {
+        this.type = assetType
     }
 }

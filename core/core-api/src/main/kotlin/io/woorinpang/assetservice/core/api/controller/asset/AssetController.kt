@@ -1,6 +1,7 @@
 package io.woorinpang.assetservice.core.api.controller.asset
 
 import io.woorinpang.assetservice.core.api.controller.asset.request.AppendAssetRequest
+import io.woorinpang.assetservice.core.api.controller.asset.request.ModifyAssetRequest
 import io.woorinpang.assetservice.core.api.controller.asset.response.FindAssetResponse
 import io.woorinpang.assetservice.core.api.support.response.ApiResponse
 import io.woorinpang.assetservice.core.api.support.response.DefaultIdResponse
@@ -25,6 +26,15 @@ class AssetController(
         @PathVariable assetId: Long,
     ): ApiResponse<FindAssetResponse> {
         return ApiResponse.success(FindAssetResponse.of(assetService.findAsset(assetId)))
+    }
+
+    @PutMapping("/{assetId}")
+    fun modifyAsset(
+        @PathVariable assetId: Long,
+        @RequestBody request: ModifyAssetRequest,
+    ): ApiResponse<Any> {
+        assetService.modifyAsset(assetId, request.assetType)
+        return ApiResponse.success()
     }
 
     @DeleteMapping("/{assetId}")
