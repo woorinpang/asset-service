@@ -11,7 +11,6 @@ class AssetAppender(
 ) {
     @Transactional
     fun append(assetType: AssetType): Long {
-        return assetRepository.save(Asset.of(userId = 1L, type = assetType, )).id
-            ?: throw IllegalArgumentException("Failed to append asset")
+        return assetRepository.save(Asset.of(userId = 1L, type = assetType,)).id!!
     }
 }

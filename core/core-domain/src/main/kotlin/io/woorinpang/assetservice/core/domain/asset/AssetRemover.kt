@@ -10,9 +10,8 @@ class AssetRemover(
 ) {
     @Transactional
     fun remove(assetId: Long) {
-        assetRepository
-            .findById(assetId)
-            .orElseThrow { IllegalArgumentException("Invalid asset id: $assetId") }
+        AssetRepositoryHelper
+            .findAssetById(assetRepository, assetId)
             .delete()
     }
 }

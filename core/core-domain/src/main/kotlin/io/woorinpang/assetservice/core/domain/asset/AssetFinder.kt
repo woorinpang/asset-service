@@ -11,6 +11,7 @@ class AssetFinder(
 ) {
     @Transactional(readOnly = true)
     fun find(assetId: Long): Asset {
-        return assetRepository.findById(assetId).orElseThrow { IllegalArgumentException("Invalid asset id: $assetId") }
+        return AssetRepositoryHelper
+            .findAssetById(assetRepository, assetId)
     }
 }

@@ -10,8 +10,8 @@ class AssetModifier(
 ) {
     @Transactional
     fun modify(assetId: Long, assetType: String) {
-        assetRepository
-            .findById(assetId).orElseThrow { IllegalArgumentException("Invalid asset id: $assetId") }
+        AssetRepositoryHelper
+            .findAssetById(assetRepository, assetId)
             .modify(AssetType.valueOf(assetType))
     }
 }
