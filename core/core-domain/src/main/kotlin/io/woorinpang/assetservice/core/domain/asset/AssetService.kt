@@ -1,6 +1,5 @@
 package io.woorinpang.assetservice.core.domain.asset
 
-import io.woorinpang.assetservice.storage.db.core.asset.Asset
 import org.springframework.stereotype.Service
 
 @Service

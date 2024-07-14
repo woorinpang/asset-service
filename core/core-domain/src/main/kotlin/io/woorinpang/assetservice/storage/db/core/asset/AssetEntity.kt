@@ -6,9 +6,11 @@ import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.EnumType
 import jakarta.persistence.Enumerated
+import jakarta.persistence.Table
 
 @Entity
-class Asset(
+@Table(name = "asset")
+class AssetEntity(
     @Column
     val userId: Long,
 
@@ -20,8 +22,8 @@ class Asset(
     private var deleted: Boolean
 ) : BaseEntity() {
     companion object {
-        fun of(userId: Long, type: AssetType): Asset {
-            return Asset(
+        fun of(userId: Long, type: AssetType): AssetEntity {
+            return AssetEntity(
                 userId = userId,
                 type = type,
                 deleted = false

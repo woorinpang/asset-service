@@ -1,17 +1,16 @@
 package io.woorinpang.assetservice.core.domain.asset
 
-import io.woorinpang.assetservice.storage.db.core.asset.Asset
-import io.woorinpang.assetservice.storage.db.core.asset.AssetRepository
+import io.woorinpang.assetservice.storage.db.core.asset.AssetEntity
+import io.woorinpang.assetservice.storage.db.core.asset.AssetJpaRepository
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
 
 @Component
 class AssetAppender(
-    val assetRepository: AssetRepository,
+    val assetRepository: AssetJpaRepository,
 ) {
     @Transactional
     fun append(assetType: AssetType): Long {
-        return assetRepository.save(Asset.of(userId = 1L, type = assetType, )).id
-            ?: throw IllegalArgumentException("Failed to append asset")
+        return assetRepository.save(AssetEntity.of(userId = 1L, type = assetType,)).id!!
     }
 }

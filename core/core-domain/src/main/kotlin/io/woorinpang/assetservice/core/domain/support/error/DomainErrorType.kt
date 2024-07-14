@@ -1,7 +1,7 @@
 package io.woorinpang.assetservice.core.domain.support.error
 
-import org.springframework.boot.logging.LogLevel
+enum class DomainErrorType(val code: DomainErrorCode, val message: String) {
+    ASSET_NOT_FOUND(DomainErrorCode.E1000, "Asset not found."),
 
-enum class DomainErrorType(val code: DomainErrorCode, val message: String, val level: LogLevel) {
-    DEFAULT_ERROR(DomainErrorCode.E9999, "An unexpected error has occurred.", LogLevel.ERROR),
+    DEFAULT_ERROR(DomainErrorCode.E9999, "An unexpected error has occurred."),
 }
