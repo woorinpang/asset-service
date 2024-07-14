@@ -1,6 +1,6 @@
 package io.woorinpang.assetservice.core.api.controller.asset.response
 
-import io.woorinpang.assetservice.storage.db.core.asset.Asset
+import io.woorinpang.assetservice.core.domain.asset.Asset
 
 data class FindAssetResponse(
     val assetId: Long?,
