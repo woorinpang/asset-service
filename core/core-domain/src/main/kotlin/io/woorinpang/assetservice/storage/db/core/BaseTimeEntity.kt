@@ -1,6 +1,7 @@
 package io.woorinpang.assetservice.storage.db.core
 
 import jakarta.persistence.*
+import org.hibernate.annotations.Comment
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
 import java.time.LocalDateTime
@@ -12,11 +13,11 @@ abstract class BaseTimeEntity {
     val id: Long? = null
 
     @CreationTimestamp
-    @Column(updatable = false)
+    @Column(updatable = false) @Comment("생성일시")
     val createdAt: LocalDateTime? = null
 
     @UpdateTimestamp
-    @Column
+    @Column @Comment("수정일시")
     var updatedAt: LocalDateTime? = null
         protected set
 }
