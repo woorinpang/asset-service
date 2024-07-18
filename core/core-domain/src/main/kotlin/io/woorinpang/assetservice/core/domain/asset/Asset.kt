@@ -12,7 +12,7 @@ data class Asset(
             return Asset(
                 id = entity.id,
                 userId = entity.userId,
-                type = entity.type
+                type = AssetType.valueOf(entity.type)
             )
         }
     }

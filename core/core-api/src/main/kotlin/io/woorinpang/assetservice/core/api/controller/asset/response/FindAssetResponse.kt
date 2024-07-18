@@ -6,7 +6,7 @@ data class FindAssetResponse(
     val assetId: Long?,
     val userId: Long,
     val assetType: String,
-    val assetTypeName: String,
+    val assetTypeDescription: String,
 ) {
     companion object {
         fun of(asset: Asset): FindAssetResponse {
@@ -14,7 +14,7 @@ data class FindAssetResponse(
                 assetId = asset.id,
                 userId = asset.userId,
                 assetType = asset.type.code,
-                assetTypeName = asset.type.name,
+                assetTypeDescription = asset.type.description,
             )
         }
     }
