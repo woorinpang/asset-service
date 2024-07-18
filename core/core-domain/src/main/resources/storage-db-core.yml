@@ -42,15 +42,22 @@ logging:
 ---
 spring.config.activate.on-profile: local-dev
 
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_log: true
+        format_sql: true
+    show-sql: true
+
 storage:
   datasource:
     core:
       driver-class-name: com.mysql.cj.jdbc.Driver
       jdbc-url: jdbc:mysql://${storage.database.db-core.url}
-#      jdbc-url: jdbc:mysql://localhost:13306/asset_db?allowPublicKeyRetrieval=true&useSSL=false
-#      username: woorinpang_user
       username: ${storage.database.db-core.username}
-#      password: woorinpang_pass
       password: ${storage.database.db-core.password}
       maximum-pool-size: 5
       connection-timeout: 1100

@@ -11,6 +11,6 @@ class AssetAppender(
 ) {
     @Transactional
     fun append(assetType: AssetType): Long {
-        return assetRepository.save(AssetEntity.of(userId = 1L, type = assetType,)).id!!
+        return assetRepository.save(AssetEntity.of(userId = 1L, type = assetType.name,)).id!!
     }
 }
