@@ -15,7 +15,8 @@ class AssetEntity(
     val type: String,
 
     @Column(name = "deleted")
-    private var deleted: Boolean
+    private var deleted: Boolean,
+
 ) : BaseEntity() {
     companion object {
         fun of(userId: Long, type: String): AssetEntity {

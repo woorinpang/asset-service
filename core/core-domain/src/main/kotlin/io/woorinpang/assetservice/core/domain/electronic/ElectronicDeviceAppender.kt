@@ -10,9 +10,9 @@ class ElectronicDeviceAppender(
 ) {
     @Transactional
     fun append(
-        target: ElectronicDeviceTarget,
+        assetId: Long,
         electronicDevice: ElectronicDevice
     ): Long {
-        return electronicDeviceEntityJpaRepository.save(electronicDevice.toEntity(target)).id!!
+        return electronicDeviceEntityJpaRepository.save(electronicDevice.toEntity(assetId)).id!!
     }
 }

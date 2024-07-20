@@ -1,5 +1,5 @@
 package io.woorinpang.assetservice.core.domain.electronic
 
-data class ElectronicDeviceTarget(
+data class AssetTarget(
     val id: Long,
 )
