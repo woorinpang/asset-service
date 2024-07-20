@@ -17,18 +17,27 @@ class AssetEntity(
     @Column(name = "deleted")
     private var deleted: Boolean,
 
+    @Column(name = "createdBy", columnDefinition = "varchar(60) not null comment '생성자'")
+    val createdBy: String,
+
+    @Column(name = "updatedBy", columnDefinition = "varchar(60) not null comment '수정자'")
+    var updatedBy: String,
+
 ) : BaseEntity() {
     companion object {
-        fun of(userId: Long, type: String): AssetEntity {
+        fun of(userId: Long, type: String, createdBy: String): AssetEntity {
             return AssetEntity(
                 userId = userId,
                 type = type,
-                deleted = false
+                deleted = false,
+                createdBy = createdBy,
+                updatedBy = createdBy
             )
         }
     }
 
-    fun delete() {
+    fun delete(updatedBy: String) {
         this.deleted = true
+        this.updatedBy = updatedBy
     }
 }

@@ -3,7 +3,6 @@ package io.woorinpang.assetservice.core.domain.electronic
 import io.woorinpang.assetservice.storage.db.core.electronic.ElectronicDeviceEntity
 
 data class ElectronicDevice private constructor(
-    val type: ElectronicDeviceType,
     val manufacturer: String,
     val model: String,
     val serialNumber: String,
@@ -11,14 +10,12 @@ data class ElectronicDevice private constructor(
 ) {
     companion object {
         fun of(
-            type: ElectronicDeviceType,
             manufacturer: String,
             model: String,
             serialNumber: String,
             price: Price
         ): ElectronicDevice {
             return ElectronicDevice(
-                type = type,
                 manufacturer = manufacturer,
                 model = model,
                 serialNumber = serialNumber,
@@ -27,14 +24,19 @@ data class ElectronicDevice private constructor(
         }
     }
 
-    fun toEntity(assetId: Long): ElectronicDeviceEntity {
+    fun toEntity(
+        assetId: Long,
+        type: ElectronicDeviceType,
+        user: String
+    ): ElectronicDeviceEntity {
         return ElectronicDeviceEntity.of(
             assetId = assetId,
             type = type.name,
             manufacturer = manufacturer,
             model = model,
             serialNumber = serialNumber,
-            price = price.value
+            price = price.value,
+            createdBy = user,
         )
     }
 }
