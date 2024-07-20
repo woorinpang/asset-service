@@ -4,6 +4,7 @@ import io.woorinpang.assetservice.storage.db.core.BaseEntity
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.Table
+import org.hibernate.annotations.Comment
 import org.hibernate.annotations.DynamicUpdate
 import java.math.BigDecimal
 
@@ -18,23 +19,29 @@ class ElectronicDeviceEntity(
     val type: String,
 
     @Column(name = "manufacturer", columnDefinition = "varchar(255) not null comment '제조사'")
-    val manufacturer: String,
+    private var manufacturer: String,
 
     @Column(name = "model", columnDefinition = "varchar(255) null comment '모델명'")
-    val model: String,
+    private var model: String? = null,
 
     @Column(name = "serialNumber", columnDefinition = "varchar(255) null comment '시리얼 번호'")
-    val serialNumber: String,
+    private var serialNumber: String? = null,
 
-    @Column(name = "price", columnDefinition = "decimal(10,0) null comment '가격'")
-    val price: BigDecimal,
+    @Column(name = "price", columnDefinition = "decimal default 0 not null comment '가격'")
+    private var price: BigDecimal,
 
-    @Column(name = "deleted")
+    @Column(name = "deleted", columnDefinition = "bit default b'0' not null comment '삭제 여부'")
     private var deleted: Boolean,
+
+    @Column(name = "createdBy", columnDefinition = "varchar(60) not null comment '생성자'")
+    val createdBy: String,
+
+    @Column(name = "updatedBy", columnDefinition = "varchar(60) not null comment '수정자'")
+    var updatedBy: String,
 
 ) : BaseEntity() {
     companion object {
-        fun of(assetId: Long, type: String, manufacturer: String, model: String, serialNumber: String, price: BigDecimal): ElectronicDeviceEntity {
+        fun of(assetId: Long, type: String, manufacturer: String, model: String, serialNumber: String, price: BigDecimal, createdBy: String): ElectronicDeviceEntity {
             return ElectronicDeviceEntity(
                 assetId = assetId,
                 type = type,
@@ -43,11 +50,22 @@ class ElectronicDeviceEntity(
                 serialNumber = serialNumber,
                 price = price,
                 deleted = false,
+                createdBy = createdBy,
+                updatedBy = createdBy,
             )
         }
     }
 
-    fun delete() {
+    fun modify(manufacturer: String, model: String, serialNumber: String, price: BigDecimal, updatedBy: String) {
+        this.manufacturer = manufacturer
+        this.model = model
+        this.serialNumber = serialNumber
+        this.price = price
+        this.updatedBy = updatedBy
+    }
+
+    fun delete(updatedBy: String) {
         this.deleted = true
+        this.updatedBy = updatedBy
     }
 }

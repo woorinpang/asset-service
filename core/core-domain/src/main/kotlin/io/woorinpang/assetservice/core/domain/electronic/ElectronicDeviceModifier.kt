@@ -6,16 +6,17 @@ import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
 
 @Component
-class ElectronicDeviceRemover(
+class ElectronicDeviceModifier(
     val electronicDeviceEntityJpaRepository: ElectronicDeviceEntityJpaRepository
 ) {
     @Transactional
-    fun remove(
+    fun modify(
         target: ElectronicDeviceTarget,
+        electronicDevice: ElectronicDevice,
         user: User
     ) {
         ElectronicDeviceHelper
             .findElectronicDeviceById(electronicDeviceEntityJpaRepository, target.id)
-            .delete(user.email)
+            .modify(electronicDevice.manufacturer, electronicDevice.model, electronicDevice.serialNumber, electronicDevice.price.value, user.email)
     }
 }
