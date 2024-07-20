@@ -4,19 +4,12 @@ import org.springframework.stereotype.Component
 
 @Component
 class ElectronicDeviceService(
-    val personalComputerAppender: PersonalComputerAppender
+    val electronicDeviceAppender: ElectronicDeviceAppender,
 ) {
-    fun appendPersonalComputer(
+    fun appendElectronicDevice(
         target: ElectronicDeviceTarget,
-        personalComputer: PersonalComputer,
+        personalComputer: ElectronicDevice,
     ): Long {
-        return personalComputerAppender.append(target, personalComputer)
-    }
-
-    fun appendMobilePhone(
-        target: ElectronicDeviceTarget,
-        mobilePhone: MobilePhone,
-    ) {
-
+        return electronicDeviceAppender.append(target, personalComputer)
     }
 }

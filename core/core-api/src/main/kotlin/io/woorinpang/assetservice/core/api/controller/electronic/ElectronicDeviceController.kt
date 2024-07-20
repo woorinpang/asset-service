@@ -1,6 +1,6 @@
 package io.woorinpang.assetservice.core.api.controller.electronic
 
-import io.woorinpang.assetservice.core.api.controller.electronic.request.AppendPersonalComputerRequest
+import io.woorinpang.assetservice.core.api.controller.electronic.request.AppendElectronicDeviceRequest
 import io.woorinpang.assetservice.core.api.support.response.ApiResponse
 import io.woorinpang.assetservice.core.api.support.response.DefaultIdResponse
 import io.woorinpang.assetservice.core.domain.electronic.ElectronicDeviceService
@@ -11,19 +11,19 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/assets/{assetId}/personal-computers")
-class PersonalComputerController(
+@RequestMapping("/assets/{assetId}/electronic-devices")
+class ElectronicDeviceController(
     val electronicDeviceService: ElectronicDeviceService
 ) {
 
     @RequestMapping
-    fun appendPersonalComputer(
+    fun appendElectronicDevice(
         @PathVariable assetId: Long,
-        @RequestBody @Valid request: AppendPersonalComputerRequest
+        @RequestBody @Valid request: AppendElectronicDeviceRequest
     ): ApiResponse<DefaultIdResponse> {
-        val successId = electronicDeviceService.personalComputerAppender.append(
+        val successId = electronicDeviceService.electronicDeviceAppender.append(
             request.toTarget(assetId),
-            request.toPersonalComputer()
+            request.toElectronicDevice()
         )
         return ApiResponse.success(DefaultIdResponse(successId))
     }
