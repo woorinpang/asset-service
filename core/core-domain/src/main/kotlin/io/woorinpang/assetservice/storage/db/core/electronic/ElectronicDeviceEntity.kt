@@ -4,10 +4,12 @@ import io.woorinpang.assetservice.storage.db.core.BaseEntity
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.Table
+import org.hibernate.annotations.DynamicUpdate
 import java.math.BigDecimal
 
 @Entity
 @Table(name = "ElectronicDevice")
+@DynamicUpdate
 class ElectronicDeviceEntity(
     @Column(name = "assetId", columnDefinition = "bigint not null comment '자산 고유번호'")
     val assetId: Long,
@@ -25,7 +27,10 @@ class ElectronicDeviceEntity(
     val serialNumber: String,
 
     @Column(name = "price", columnDefinition = "decimal(10,0) null comment '가격'")
-    val price: BigDecimal
+    val price: BigDecimal,
+
+    @Column(name = "deleted")
+    private var deleted: Boolean,
 
 ) : BaseEntity() {
     companion object {
@@ -37,7 +42,12 @@ class ElectronicDeviceEntity(
                 model = model,
                 serialNumber = serialNumber,
                 price = price,
+                deleted = false,
             )
         }
+    }
+
+    fun delete() {
+        this.deleted = true
     }
 }
