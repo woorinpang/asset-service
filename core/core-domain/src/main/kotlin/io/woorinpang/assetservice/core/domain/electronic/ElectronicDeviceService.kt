@@ -1,22 +1,36 @@
 package io.woorinpang.assetservice.core.domain.electronic
 
+import io.woorinpang.assetservice.core.domain.user.User
 import org.springframework.stereotype.Component
 
 @Component
 class ElectronicDeviceService(
-    val personalComputerAppender: PersonalComputerAppender
+    val electronicDeviceAppender: ElectronicDeviceAppender,
+    val electronicDeviceRemover: ElectronicDeviceRemover,
+    val electronicDeviceModifier: ElectronicDeviceModifier,
+    val electronicDeviceValidator: ElectronicDeviceValidator,
 ) {
-    fun appendPersonalComputer(
-        target: ElectronicDeviceTarget,
-        personalComputer: PersonalComputer,
+    fun appendElectronicDevice(
+        assetId: Long,
+        type: ElectronicDeviceType,
+        electronicDevice: ElectronicDevice,
+        user: User,
     ): Long {
-        return personalComputerAppender.append(target, personalComputer)
+        return electronicDeviceAppender.append(assetId, type, electronicDevice, user)
     }
 
-    fun appendMobilePhone(
+    fun modifyElectronicDevice(
         target: ElectronicDeviceTarget,
-        mobilePhone: MobilePhone,
+        electronicDevice: ElectronicDevice,
+        user: User,
     ) {
+        electronicDeviceModifier.modify(target, electronicDevice, user)
+    }
 
+    fun removeElectronicDevice(
+        target: ElectronicDeviceTarget,
+        user: User,
+    ) {
+        electronicDeviceRemover.remove(target, user)
     }
 }
