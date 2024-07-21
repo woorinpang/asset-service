@@ -4,7 +4,6 @@ import io.woorinpang.assetservice.storage.db.core.BaseEntity
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.Table
-import org.hibernate.annotations.Comment
 import org.hibernate.annotations.DynamicUpdate
 import java.math.BigDecimal
 
@@ -30,8 +29,11 @@ class ElectronicDeviceEntity(
     @Column(name = "price", columnDefinition = "decimal default 0 not null comment '가격'")
     private var price: BigDecimal,
 
+    @Column(name = "isForSale", columnDefinition = "bit default b'0' not null comment '판매 등록 여부'")
+    private var isForSale: Boolean = false,
+
     @Column(name = "deleted", columnDefinition = "bit default b'0' not null comment '삭제 여부'")
-    private var deleted: Boolean,
+    private var deleted: Boolean = false,
 
     @Column(name = "createdBy", columnDefinition = "varchar(60) not null comment '생성자'")
     val createdBy: String,
@@ -49,7 +51,6 @@ class ElectronicDeviceEntity(
                 model = model,
                 serialNumber = serialNumber,
                 price = price,
-                deleted = false,
                 createdBy = createdBy,
                 updatedBy = createdBy,
             )

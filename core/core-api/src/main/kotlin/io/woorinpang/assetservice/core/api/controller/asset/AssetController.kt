@@ -21,7 +21,7 @@ class AssetController(
         @RequestBody @Valid request: AppendAssetRequest,
     ): ApiResponse<DefaultIdResponse> {
         request.validate()
-        val successId = assetService.appendAsset(request.toAssetType(), authenticatedUser.toUser())
+        val successId = assetService.appendAsset(authenticatedUser.toUser(), request.toAssetType())
         return ApiResponse.success(DefaultIdResponse(successId))
     }
 

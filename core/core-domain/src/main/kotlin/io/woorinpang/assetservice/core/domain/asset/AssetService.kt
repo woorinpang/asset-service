@@ -10,8 +10,9 @@ class AssetService(
     val assetRemover: AssetRemover,
     val assetValidator: AssetValidator,
 ) {
-    fun appendAsset(type: AssetType, user: User): Long {
-        return assetAppender.append(type, user)
+    fun appendAsset(user: User, type: AssetType): Long {
+        assetValidator.validExistsUserIdAndType(user, type)
+        return assetAppender.append(user, type)
     }
 
     fun findAsset(target: AssetTarget): Asset {

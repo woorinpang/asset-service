@@ -1,6 +1,5 @@
 package io.woorinpang.assetservice.storage.db.core.asset
 
-import io.woorinpang.assetservice.core.domain.asset.AssetType
 import io.woorinpang.assetservice.storage.db.core.BaseEntity
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
@@ -16,7 +15,7 @@ class AssetEntity(
     val type: String,
 
     @Column(name = "deleted")
-    private var deleted: Boolean,
+    private var deleted: Boolean = false,
 
     @Column(name = "createdBy", columnDefinition = "varchar(60) not null comment '생성자'")
     val createdBy: String,
@@ -30,7 +29,6 @@ class AssetEntity(
             return AssetEntity(
                 userId = userId,
                 type = type,
-                deleted = false,
                 createdBy = createdBy,
                 updatedBy = createdBy
             )
@@ -48,5 +46,13 @@ class AssetEntity(
 
     fun equalAssetType(type: String): Boolean {
         return this.type == type
+    }
+
+    fun equalUserId(id: Long): Boolean {
+        return this.userId == id
+    }
+
+    fun isDeleted(): Boolean {
+        return this.deleted
     }
 }

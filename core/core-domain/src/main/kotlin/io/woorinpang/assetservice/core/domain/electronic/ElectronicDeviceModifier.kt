@@ -12,8 +12,8 @@ class ElectronicDeviceModifier(
     @Transactional
     fun modify(
         target: ElectronicDeviceTarget,
+        user: User,
         electronicDevice: ElectronicDevice,
-        user: User
     ) {
         ElectronicDeviceHelper
             .findElectronicDeviceById(electronicDeviceEntityJpaRepository, target.id)

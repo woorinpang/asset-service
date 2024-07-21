@@ -16,21 +16,21 @@ class ElectronicDeviceService(
 ) {
     fun appendElectronicDevice(
         assetId: Long,
+        user: User,
         type: ElectronicDeviceType,
         electronicDevice: ElectronicDevice,
-        user: User,
     ): Long {
-        assetValidator.validAssetIsElectronic(AssetTarget(assetId), AssetType.ELECTRONIC)
+        assetValidator.validUserAsset(AssetTarget(assetId), user, AssetType.ELECTRONIC)
         return electronicDeviceAppender.append(assetId, type, electronicDevice, user)
     }
 
     fun modifyElectronicDevice(
         target: ElectronicDeviceTarget,
-        electronicDevice: ElectronicDevice,
         user: User,
+        electronicDevice: ElectronicDevice,
     ) {
         electronicDeviceValidator.validCreatedBy(target, user)
-        electronicDeviceModifier.modify(target, electronicDevice, user)
+        electronicDeviceModifier.modify(target, user, electronicDevice)
     }
 
     fun removeElectronicDevice(
