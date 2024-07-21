@@ -1,5 +1,6 @@
 package io.woorinpang.assetservice.storage.db.core.asset
 
+import io.woorinpang.assetservice.core.domain.asset.AssetType
 import io.woorinpang.assetservice.storage.db.core.BaseEntity
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
@@ -36,12 +37,16 @@ class AssetEntity(
         }
     }
 
+    fun delete(updatedBy: String) {
+        this.deleted = true
+        this.updatedBy = updatedBy
+    }
+
     fun equalCreatedBy(createdBy: String): Boolean {
         return this.createdBy == createdBy
     }
 
-    fun delete(updatedBy: String) {
-        this.deleted = true
-        this.updatedBy = updatedBy
+    fun equalAssetType(type: String): Boolean {
+        return this.type == type
     }
 }

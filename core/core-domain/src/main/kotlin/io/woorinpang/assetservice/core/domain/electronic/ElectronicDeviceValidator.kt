@@ -5,11 +5,13 @@ import io.woorinpang.assetservice.core.domain.support.error.DomainErrorType
 import io.woorinpang.assetservice.core.domain.user.User
 import io.woorinpang.assetservice.storage.db.core.electronic.ElectronicDeviceEntityJpaRepository
 import org.springframework.stereotype.Component
+import org.springframework.transaction.annotation.Transactional
 
 @Component
 class ElectronicDeviceValidator(
     val electronicDeviceEntityJpaRepository: ElectronicDeviceEntityJpaRepository
 ) {
+    @Transactional(readOnly = true)
     fun validCreatedBy(target: ElectronicDeviceTarget, user: User) {
         ElectronicDeviceHelper
             .findElectronicDeviceById(electronicDeviceEntityJpaRepository, target.id)
