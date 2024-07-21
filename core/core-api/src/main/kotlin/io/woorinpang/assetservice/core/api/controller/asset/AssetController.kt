@@ -6,6 +6,7 @@ import io.woorinpang.assetservice.core.api.controller.asset.response.FindAssetRe
 import io.woorinpang.assetservice.core.api.support.response.ApiResponse
 import io.woorinpang.assetservice.core.api.support.response.DefaultIdResponse
 import io.woorinpang.assetservice.core.domain.asset.AssetService
+import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -16,8 +17,9 @@ class AssetController(
     @PostMapping
     fun appendAsset(
         @RequestAttribute("authenticatedUser") authenticatedUser: AuthenticatedUser,
-        @RequestBody request: AppendAssetRequest,
+        @RequestBody @Valid request: AppendAssetRequest,
     ): ApiResponse<DefaultIdResponse> {
+        request.validate()
         val successId = assetService.appendAsset(request.toAssetType(), authenticatedUser.toUser())
         return ApiResponse.success(DefaultIdResponse(successId))
     }
