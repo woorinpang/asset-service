@@ -6,6 +6,7 @@ import io.woorinpang.assetservice.core.api.controller.asset.response.FindAssetRe
 import io.woorinpang.assetservice.core.api.support.response.ApiResponse
 import io.woorinpang.assetservice.core.api.support.response.DefaultIdResponse
 import io.woorinpang.assetservice.core.domain.asset.AssetService
+import io.woorinpang.assetservice.core.domain.asset.AssetTarget
 import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.*
 
@@ -28,7 +29,7 @@ class AssetController(
     fun findAsset(
         @PathVariable assetId: Long,
     ): ApiResponse<FindAssetResponse> {
-        return ApiResponse.success(FindAssetResponse.of(assetService.findAsset(assetId)))
+        return ApiResponse.success(FindAssetResponse.of(assetService.findAsset(AssetTarget(assetId))))
     }
 
     @DeleteMapping("/{assetId}")
@@ -36,7 +37,7 @@ class AssetController(
         @RequestAttribute("authenticatedUser") authenticatedUser: AuthenticatedUser,
         @PathVariable assetId: Long,
     ): ApiResponse<Any> {
-        assetService.deleteAsset(assetId, authenticatedUser.toUser())
+        assetService.deleteAsset(AssetTarget(assetId), authenticatedUser.toUser())
         return ApiResponse.success()
     }
 }

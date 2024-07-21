@@ -2,13 +2,13 @@ package io.woorinpang.assetservice.core.domain.asset
 
 import io.woorinpang.assetservice.core.domain.user.User
 import io.woorinpang.assetservice.storage.db.core.asset.AssetEntity
-import io.woorinpang.assetservice.storage.db.core.asset.AssetJpaRepository
+import io.woorinpang.assetservice.storage.db.core.asset.AssetEntityJpaRepository
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
 
 @Component
 class AssetAppender(
-    val assetRepository: AssetJpaRepository,
+    val assetRepository: AssetEntityJpaRepository,
 ) {
     @Transactional
     fun append(type: AssetType, user: User): Long {

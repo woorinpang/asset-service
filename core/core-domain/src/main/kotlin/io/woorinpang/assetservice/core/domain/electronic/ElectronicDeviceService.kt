@@ -24,6 +24,7 @@ class ElectronicDeviceService(
         electronicDevice: ElectronicDevice,
         user: User,
     ) {
+        electronicDeviceValidator.validCreatedBy(target, user)
         electronicDeviceModifier.modify(target, electronicDevice, user)
     }
 
@@ -31,6 +32,7 @@ class ElectronicDeviceService(
         target: ElectronicDeviceTarget,
         user: User,
     ) {
+        electronicDeviceValidator.validCreatedBy(target, user)
         electronicDeviceRemover.remove(target, user)
     }
 }

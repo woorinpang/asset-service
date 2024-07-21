@@ -68,4 +68,8 @@ class ElectronicDeviceEntity(
         this.deleted = true
         this.updatedBy = updatedBy
     }
+
+    fun equalCreatedBy(createdBy: String): Boolean {
+        return this.createdBy == createdBy
+    }
 }

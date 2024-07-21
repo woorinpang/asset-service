@@ -36,6 +36,10 @@ class AssetEntity(
         }
     }
 
+    fun equalCreatedBy(createdBy: String): Boolean {
+        return this.createdBy == createdBy
+    }
+
     fun delete(updatedBy: String) {
         this.deleted = true
         this.updatedBy = updatedBy
