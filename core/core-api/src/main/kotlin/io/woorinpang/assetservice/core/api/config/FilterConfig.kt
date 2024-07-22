@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 class FilterConfig {
-
     @Bean
     fun loggingFilter(): FilterRegistrationBean<AuthenticatedUserFilter> {
         val registrationBean = FilterRegistrationBean(AuthenticatedUserFilter())

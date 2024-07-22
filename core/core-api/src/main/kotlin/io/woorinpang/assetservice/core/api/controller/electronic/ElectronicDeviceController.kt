@@ -21,7 +21,13 @@ class ElectronicDeviceController(
         @PathVariable assetId: Long,
         @RequestBody @Valid request: AppendElectronicDeviceRequest,
     ): ApiResponse<DefaultIdResponse> {
-        val successId = electronicDeviceService.appendElectronicDevice(assetId, request.toType(), request.toElectronicDevice(), authenticatedUser.toUser())
+        request.validate()
+        val successId = electronicDeviceService.appendElectronicDevice(
+            assetId,
+            authenticatedUser.toUser(),
+            request.toType(),
+            request.toElectronicDevice(),
+        )
         return ApiResponse.success(DefaultIdResponse(successId))
     }
 
@@ -32,7 +38,12 @@ class ElectronicDeviceController(
         @PathVariable electronicDeviceId: Long,
         @RequestBody @Valid request: ModifyElectronicDeviceRequest,
     ): ApiResponse<Any> {
-        electronicDeviceService.modifyElectronicDevice(ElectronicDeviceTarget(electronicDeviceId), request.toElectronicDevice(), authenticatedUser.toUser())
+        request.validate()
+        electronicDeviceService.modifyElectronicDevice(
+            ElectronicDeviceTarget(electronicDeviceId),
+            authenticatedUser.toUser(),
+            request.toElectronicDevice(),
+        )
         return ApiResponse.success()
     }
 

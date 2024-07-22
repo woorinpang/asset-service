@@ -7,17 +7,20 @@ import org.springframework.stereotype.Service
 class AssetService(
     val assetAppender: AssetAppender,
     val assetFinder: AssetFinder,
-    val assetRemover: AssetRemover
+    val assetRemover: AssetRemover,
+    val assetValidator: AssetValidator,
 ) {
-    fun appendAsset(type: AssetType, user: User): Long {
-        return assetAppender.append(type, user)
+    fun appendAsset(user: User, type: AssetType): Long {
+        assetValidator.validExistsUserIdAndType(user, type)
+        return assetAppender.append(user, type)
     }
 
-    fun findAsset(assetId: Long): Asset {
-        return assetFinder.find(assetId)
+    fun findAsset(target: AssetTarget): Asset {
+        return assetFinder.find(target)
     }
 
-    fun deleteAsset(assetId: Long, user: User): Any {
-        return assetRemover.remove(assetId, user)
+    fun deleteAsset(target: AssetTarget, user: User): Any {
+        assetValidator.validCreatedBy(target, user)
+        return assetRemover.remove(target, user)
     }
 }

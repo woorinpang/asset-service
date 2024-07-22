@@ -18,7 +18,7 @@ class AuthenticatedUserFilter : OncePerRequestFilter() {
     override fun doFilterInternal(
         request: HttpServletRequest,
         response: HttpServletResponse,
-        filterChain: FilterChain
+        filterChain: FilterChain,
     ) {
         val encodedUserJson = request.getHeader("Authenticated-User")
 
