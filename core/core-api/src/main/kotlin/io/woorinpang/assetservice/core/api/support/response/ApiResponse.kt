@@ -19,16 +19,11 @@ data class ApiResponse<T> private constructor(
             return ApiResponse(ResultType.SUCCESS, data, null)
         }
 
-        fun <S> error(
-            error: ApiErrorType,
-            errorData: Any? = null,
-        ): ApiResponse<S> {
+        fun <S> error(error: ApiErrorType, errorData: Any? = null): ApiResponse<S> {
             return ApiResponse(ResultType.ERROR, null, ApiErrorMessage(error, errorData))
         }
 
-        fun error(
-            error: DomainErrorType
-        ): ApiResponse<Any> {
+        fun error(error: DomainErrorType): ApiResponse<Any> {
             return ApiResponse(ResultType.ERROR, null, DomainErrorMessage(error))
         }
     }

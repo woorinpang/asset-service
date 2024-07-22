@@ -22,7 +22,12 @@ class ElectronicDeviceController(
         @RequestBody @Valid request: AppendElectronicDeviceRequest,
     ): ApiResponse<DefaultIdResponse> {
         request.validate()
-        val successId = electronicDeviceService.appendElectronicDevice(assetId, authenticatedUser.toUser(), request.toType(), request.toElectronicDevice())
+        val successId = electronicDeviceService.appendElectronicDevice(
+            assetId,
+            authenticatedUser.toUser(),
+            request.toType(),
+            request.toElectronicDevice(),
+        )
         return ApiResponse.success(DefaultIdResponse(successId))
     }
 
@@ -34,7 +39,11 @@ class ElectronicDeviceController(
         @RequestBody @Valid request: ModifyElectronicDeviceRequest,
     ): ApiResponse<Any> {
         request.validate()
-        electronicDeviceService.modifyElectronicDevice(ElectronicDeviceTarget(electronicDeviceId), authenticatedUser.toUser(), request.toElectronicDevice())
+        electronicDeviceService.modifyElectronicDevice(
+            ElectronicDeviceTarget(electronicDeviceId),
+            authenticatedUser.toUser(),
+            request.toElectronicDevice(),
+        )
         return ApiResponse.success()
     }
 

@@ -23,11 +23,16 @@ class ApiControllerAdvice {
     fun handleMethodArgumentNotValidException(e: MethodArgumentNotValidException): ResponseEntity<ApiResponse<Any>> {
         log.info("handleMethodArgumentNotValidException = {}", e.message, e)
         val fieldErrors = e.fieldErrors.map { FieldError.of(it) }
-        return ResponseEntity(ApiResponse.error(ApiErrorType.INVALID_REQUEST_VALUE, fieldErrors), HttpStatus.BAD_REQUEST)
+        return ResponseEntity(
+            ApiResponse.error(ApiErrorType.INVALID_REQUEST_VALUE, fieldErrors),
+            HttpStatus.BAD_REQUEST,
+        )
     }
 
     @ExceptionHandler(CustomMethodArgumentNotValidException::class)
-    fun handleCustomMethodArgumentNotValidException(e: CustomMethodArgumentNotValidException): ResponseEntity<ApiResponse<Any>> {
+    fun handleCustomMethodArgumentNotValidException(
+        e: CustomMethodArgumentNotValidException,
+    ): ResponseEntity<ApiResponse<Any>> {
         log.info("handleCustomMethodArgumentNotValidException = {}", e.message, e)
         return ResponseEntity(ApiResponse.error(ApiErrorType.INVALID_REQUEST_VALUE, e.errors), HttpStatus.BAD_REQUEST)
     }

@@ -2,7 +2,6 @@ package io.woorinpang.assetservice.core.api.controller.electronic.request
 
 import io.woorinpang.assetservice.core.api.support.error.CustomMethodArgumentNotValidException
 import io.woorinpang.assetservice.core.api.support.error.FieldError
-import io.woorinpang.assetservice.core.domain.asset.AssetType
 import io.woorinpang.assetservice.core.domain.electronic.ElectronicDevice
 import io.woorinpang.assetservice.core.domain.electronic.ElectronicDeviceType
 import io.woorinpang.assetservice.core.domain.electronic.Price
@@ -30,7 +29,9 @@ data class AppendElectronicDeviceRequest(
     @Throws(CustomMethodArgumentNotValidException::class)
     fun validate() {
         val errors = mutableListOf<FieldError>().apply {
-            if (ElectronicDeviceType.findByCode(electronicDeviceType!!) == null) add(FieldError.of("electronicDeviceType", "electronicDeviceType 일치하지 않습니다."))
+            if (ElectronicDeviceType.findByCode(electronicDeviceType!!) == null) {
+                add(FieldError.of("electronicDeviceType", "electronicDeviceType 일치하지 않습니다."))
+            }
         }
         if (errors.isNotEmpty()) throw CustomMethodArgumentNotValidException(errors)
     }
