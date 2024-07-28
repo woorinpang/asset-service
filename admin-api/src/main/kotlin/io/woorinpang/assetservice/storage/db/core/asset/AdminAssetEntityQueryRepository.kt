@@ -1,17 +1,17 @@
 package io.woorinpang.assetservice.storage.db.core.asset
 
 import com.querydsl.jpa.impl.JPAQueryFactory
-import io.woorinpang.assetservice.storage.db.core.asset.QAssetEntity.assetEntity
+import io.woorinpang.assetservice.storage.db.core.asset.QAdminAssetEntity.*
 import org.springframework.stereotype.Repository
 
 @Repository
-class AssetEntityQueryRepository(
+class AdminAssetEntityQueryRepository(
     val queryFactory: JPAQueryFactory
 ) {
-    fun findAssets(): List<AssetEntity> {
+    fun findAssets(): List<AdminAssetEntity> {
         return queryFactory
-            .select(assetEntity)
-            .from(assetEntity)
+            .select(adminAssetEntity)
+            .from(adminAssetEntity)
             .fetch()
     }
 }
