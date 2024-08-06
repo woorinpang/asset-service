@@ -4,6 +4,9 @@ include(
     "core:core-api",
     "core:core-domain",
     "admin-api",
+    "infra:kafka",
+    "support:logging",
+    "support:monitoring",
 )
 
 pluginManagement {
