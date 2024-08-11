@@ -7,6 +7,7 @@ include(
     "infra:kafka",
     "support:logging",
     "support:monitoring",
+    "tests:api-docs",
 )
 
 pluginManagement {
