@@ -1,0 +1,44 @@
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 2
+:sectlinks:
+
+= ASSET-SERVICE : REST API
+
+이 문서는 REST API를 구현한 ASSET-SERVICE API 사용 방법을 안내합니다.
+
+[[overview-header]]
+== 기본 정보
+
+Host : https://www.woorinpang.io/asset-service/
+
+로그인 및 권한정보를 request header에 포함하여 인증
+
+|===
+|Key|Value|Description
+
+|`+Authorization+`
+|`+Bearer ${accessToken}+`
+|로그인 후 리턴 받은 accessToken
+
+|===
+
+[[api-rest-docs]]
+
+= 자산(Asset) API Document
+
+== 1. 자산
+_/asset-service/assets/**
+
+=== 자산 조회
+.요청
+include::{snippets}/find-asset/http-request.adoc[]
+include::{snippets}/find-asset/curl-request.adoc[]
+include::{snippets}/find-asset/httpie-request.adoc[]
+include::{snippets}/find-asset/path-parameters.adoc[]
+
+.응답
+include::{snippets}/find-asset/http-response.adoc[]
+include::{snippets}/find-asset/response-fields.adoc[]
