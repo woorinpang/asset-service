@@ -1,4 +1,4 @@
-package io.woorinpang.assetservice.config
+package io.woorinpang.assetservice.core.api.config
 
 import org.apache.kafka.clients.admin.NewTopic
 import org.springframework.context.annotation.Bean
@@ -7,6 +7,9 @@ import org.springframework.kafka.config.TopicBuilder
 
 @Configuration
 class KafkaTopicConfig {
+
     @Bean
-    fun topic1(): NewTopic? = TopicBuilder.name("topic1").build()
+    fun topic1(): NewTopic? {
+        return TopicBuilder.name("topic1").build()
+    }
 }

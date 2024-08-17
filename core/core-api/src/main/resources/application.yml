@@ -17,6 +17,11 @@ spring:
       - storage-db-core.yml
   web.resources.add-mappings: false
 
+  kafka:
+      bootstrap-servers: localhost:9092
+      consumer:
+          auto-offset-reset: earliest
+
 ---
 spring.config.activate.on-profile: local
 

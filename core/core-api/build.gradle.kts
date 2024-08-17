@@ -9,7 +9,7 @@ tasks.getByName("jar") {
 dependencies {
     implementation(project(":core:core-domain"))
     implementation(project(":support:logging"))
-//    runtimeOnly(project(":infra:kafka"))
+//    implementation(project(":infra:kafka"))
 
     testImplementation(project(":tests:api-docs"))
 
@@ -20,4 +20,6 @@ dependencies {
 
     implementation("org.springframework.cloud:spring-cloud-starter-config")
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
+
+    implementation("org.springframework.kafka:spring-kafka")
 }
