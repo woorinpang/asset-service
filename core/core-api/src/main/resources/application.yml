@@ -12,9 +12,15 @@ spring:
   config:
     import:
       - optional:configserver:http://localhost:8888
+      - logging.yml
       - core-domain.yml
       - storage-db-core.yml
   web.resources.add-mappings: false
+
+  kafka:
+      bootstrap-servers: localhost:9092
+      consumer:
+          auto-offset-reset: earliest
 
 ---
 spring.config.activate.on-profile: local
