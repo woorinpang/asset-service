@@ -13,6 +13,7 @@ spring:
     import:
       - optional:configserver:http://localhost:8888
       - logging.yml
+      - monitoring.yml
       - core-domain.yml
       - storage-db-core.yml
   web.resources.add-mappings: false

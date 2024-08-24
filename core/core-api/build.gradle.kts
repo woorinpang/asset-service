@@ -9,6 +9,7 @@ tasks.getByName("jar") {
 dependencies {
     implementation(project(":core:core-domain"))
     implementation(project(":support:logging"))
+    implementation(project(":support:monitoring"))
 //    implementation(project(":infra:kafka"))
 
     testImplementation(project(":tests:api-docs"))
