@@ -1,3 +1,5 @@
+@file:Suppress("ktlint:standard:no-wildcard-imports")
+
 package io.woorinpang.assetservice.core.api.config
 
 import org.apache.kafka.clients.consumer.ConsumerConfig
@@ -15,7 +17,6 @@ import java.util.*
 
 @Configuration
 class KafkaConsumerConfig {
-
     @Value("\${spring.kafka.bootstrap-servers}")
     lateinit var hosts: String
 

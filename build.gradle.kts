@@ -1,4 +1,6 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
+
 plugins {
     kotlin("jvm")
     kotlin("kapt")
@@ -71,7 +73,3 @@ subprojects {
         useJUnitPlatform()
     }
 }
-
-
-
-

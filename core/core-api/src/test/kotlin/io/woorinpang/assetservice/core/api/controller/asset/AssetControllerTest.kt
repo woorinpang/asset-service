@@ -105,7 +105,7 @@ class AssetControllerTest : RestDocsTest() {
                     requestPreprocessor(),
                     responsePreprocessor(),
                     RequestDocumentation.pathParameters(
-                        parameterWithName("assetId").description("자산 고유번호")
+                        parameterWithName("assetId").description("자산 고유번호"),
                     ),
                     responseFields(
                         fieldWithPath("result").type(JsonFieldType.STRING).description("ResultType"),

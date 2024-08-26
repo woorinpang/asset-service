@@ -30,9 +30,7 @@ class ApiControllerAdvice {
     }
 
     @ExceptionHandler(CustomMethodArgumentNotValidException::class)
-    fun handleCustomMethodArgumentNotValidException(
-        e: CustomMethodArgumentNotValidException,
-    ): ResponseEntity<ApiResponse<Any>> {
+    fun handleCustomMethodArgumentNotValidException(e: CustomMethodArgumentNotValidException): ResponseEntity<ApiResponse<Any>> {
         log.info("handleCustomMethodArgumentNotValidException = {}", e.message, e)
         return ResponseEntity(ApiResponse.error(ApiErrorType.INVALID_REQUEST_VALUE, e.errors), HttpStatus.BAD_REQUEST)
     }

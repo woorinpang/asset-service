@@ -19,8 +19,8 @@ class HealthController(
     fun status(): String {
         val property = env.getProperty("local.server.port")
         return """
-                GET User Service on
-                local.server.port : {0}
-                """.trimIndent().replace("{0}", Objects.requireNonNull(property)!!)
+            GET User Service on
+            local.server.port : {0}
+            """.trimIndent().replace("{0}", Objects.requireNonNull(property)!!)
     }
 }

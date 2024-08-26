@@ -3,7 +3,6 @@ package io.woorinpang.assetservice.core.api.controller.electronic.request
 import io.woorinpang.assetservice.core.api.support.error.CustomMethodArgumentNotValidException
 import io.woorinpang.assetservice.core.api.support.error.FieldError
 import io.woorinpang.assetservice.core.domain.electronic.ElectronicDevice
-import io.woorinpang.assetservice.core.domain.electronic.ElectronicDeviceType
 import io.woorinpang.assetservice.core.domain.electronic.Price
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.NotNull

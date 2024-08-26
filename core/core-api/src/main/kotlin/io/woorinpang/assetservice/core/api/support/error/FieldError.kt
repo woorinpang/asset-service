@@ -5,7 +5,10 @@ data class FieldError private constructor(
     val message: String,
 ) {
     companion object {
-        fun of(field: String, message: String): FieldError {
+        fun of(
+            field: String,
+            message: String
+        ): FieldError {
             return FieldError(field, message)
         }
 

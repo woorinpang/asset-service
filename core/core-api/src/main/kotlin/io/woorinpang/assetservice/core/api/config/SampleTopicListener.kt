@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component
 
 @Component
 class SampleTopicListener {
-
     val log = LoggerFactory.getLogger(SampleTopicListener::class.java)
 
     @KafkaListener(topics = ["foobar"])

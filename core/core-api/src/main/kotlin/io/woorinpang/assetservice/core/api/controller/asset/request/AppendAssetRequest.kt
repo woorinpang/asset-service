@@ -11,11 +11,12 @@ data class AppendAssetRequest(
 ) {
     @Throws(CustomMethodArgumentNotValidException::class)
     fun validate() {
-        val errors = mutableListOf<FieldError>().apply {
-            if (AssetType.findByCode(assetType!!) == null) {
-                add(FieldError.of("assetType", "assetType 일치하지 않습니다."))
+        val errors =
+            mutableListOf<FieldError>().apply {
+                if (AssetType.findByCode(assetType!!) == null) {
+                    add(FieldError.of("assetType", "assetType 일치하지 않습니다."))
+                }
             }
-        }
 
         if (errors.isNotEmpty()) throw CustomMethodArgumentNotValidException(errors)
     }
