@@ -10,27 +10,26 @@ import jakarta.persistence.Table
 class AssetEntity(
     @Column
     val userId: Long,
-
     @Column(name = "assetType")
     val type: String,
-
     @Column(name = "deleted")
     private var deleted: Boolean = false,
-
     @Column(name = "createdBy", columnDefinition = "varchar(60) not null comment '생성자'")
     val createdBy: String,
-
     @Column(name = "updatedBy", columnDefinition = "varchar(60) not null comment '수정자'")
     var updatedBy: String,
-
 ) : BaseEntity() {
     companion object {
-        fun of(userId: Long, type: String, createdBy: String): AssetEntity {
+        fun of(
+            userId: Long,
+            type: String,
+            createdBy: String,
+        ): AssetEntity {
             return AssetEntity(
                 userId = userId,
                 type = type,
                 createdBy = createdBy,
-                updatedBy = createdBy
+                updatedBy = createdBy,
             )
         }
     }

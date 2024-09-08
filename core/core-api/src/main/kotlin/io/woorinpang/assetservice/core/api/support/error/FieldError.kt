@@ -7,7 +7,7 @@ data class FieldError private constructor(
     companion object {
         fun of(
             field: String,
-            message: String
+            message: String,
         ): FieldError {
             return FieldError(field, message)
         }

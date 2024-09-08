@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional
 
 @Component
 class AssetFinder(
-    val assetEntityJpaRepository: AssetEntityJpaRepository
+    val assetEntityJpaRepository: AssetEntityJpaRepository,
 ) {
     @Transactional(readOnly = true)
     fun find(target: AssetTarget): Asset {

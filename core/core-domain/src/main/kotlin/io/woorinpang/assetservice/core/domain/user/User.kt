@@ -6,7 +6,11 @@ data class User(
     val name: String,
 ) {
     companion object {
-        fun of(id: Long, email: String, name: String): User {
+        fun of(
+            id: Long,
+            email: String,
+            name: String,
+        ): User {
             return User(
                 id = id,
                 email = email,

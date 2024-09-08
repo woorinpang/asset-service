@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class ElectronicDeviceEntityQueryRepository(
-    val queryFactory: JPAQueryFactory
+    val queryFactory: JPAQueryFactory,
 ) {
     fun findElectronicDevices(
         condition: ElectronicDeviceSearchCondition,

@@ -9,14 +9,17 @@ import org.springframework.transaction.annotation.Transactional
 
 @Component
 class ElectronicDeviceValidator(
-    val electronicDeviceEntityJpaRepository: ElectronicDeviceEntityJpaRepository
+    val electronicDeviceEntityJpaRepository: ElectronicDeviceEntityJpaRepository,
 ) {
     @Transactional(readOnly = true)
-    fun validCreatedBy(target: ElectronicDeviceTarget, user: User) {
+    fun validCreatedBy(
+        target: ElectronicDeviceTarget,
+        user: User,
+    ) {
         ElectronicDeviceHelper
             .findElectronicDeviceById(electronicDeviceEntityJpaRepository, target.id)
             .equalCreatedBy(user.email)
-            .takeIf { it}
+            .takeIf { it }
             ?: throw CoreDomainException(DomainErrorType.ELECTRONIC_DEVICE_CREATED_BY_NOT_EQUAL)
     }
 }

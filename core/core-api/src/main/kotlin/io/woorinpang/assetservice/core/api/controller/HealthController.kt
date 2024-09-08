@@ -8,7 +8,7 @@ import java.util.*
 
 @RestController
 class HealthController(
-    val env: Environment
+    val env: Environment,
 ) {
     @GetMapping("/health")
     fun health(): ResponseEntity<String> {

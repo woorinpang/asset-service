@@ -25,7 +25,11 @@ class AuthenticatedUserFilter : OncePerRequestFilter() {
         if (!encodedUserJson.isNullOrEmpty()) {
             try {
                 val decodedUser = URLDecoder.decode(encodedUserJson, StandardCharsets.UTF_8)
-                val authenticatedUser: AuthenticatedUser = objectMapper.readValue(decodedUser, AuthenticatedUser::class.java)
+                val authenticatedUser: AuthenticatedUser =
+                    objectMapper.readValue(
+                        decodedUser,
+                        AuthenticatedUser::class.java,
+                    )
                 request.setAttribute("authenticatedUser", authenticatedUser)
             } catch (e: Exception) {
                 e.printStackTrace()

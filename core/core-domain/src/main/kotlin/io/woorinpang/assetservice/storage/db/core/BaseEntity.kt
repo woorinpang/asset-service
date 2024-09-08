@@ -13,11 +13,13 @@ abstract class BaseEntity {
     val id: Long? = null
 
     @CreationTimestamp
-    @Column(updatable = false) @Comment("생성일시")
+    @Column(updatable = false)
+    @Comment("생성일시")
     val createdAt: LocalDateTime? = null
 
     @UpdateTimestamp
-    @Column @Comment("수정일시")
+    @Column
+    @Comment("수정일시")
     var updatedAt: LocalDateTime? = null
         protected set
 }

@@ -34,11 +34,12 @@ class KafkaConsumerConfig {
     }
 
     private fun consumerProperties(): Map<String, Any> {
-        val hostName: String = try {
-            InetAddress.getLocalHost().hostName + UUID.randomUUID().toString()
-        } catch (e: UnknownHostException) {
-            UUID.randomUUID().toString()
-        }
+        val hostName: String =
+            try {
+                InetAddress.getLocalHost().hostName + UUID.randomUUID().toString()
+            } catch (e: UnknownHostException) {
+                UUID.randomUUID().toString()
+            }
         return hashMapOf(
             ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG to hosts,
             ConsumerConfig.GROUP_ID_CONFIG to hostName,

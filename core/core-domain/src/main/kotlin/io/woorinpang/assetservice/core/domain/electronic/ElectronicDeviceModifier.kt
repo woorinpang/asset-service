@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional
 
 @Component
 class ElectronicDeviceModifier(
-    val electronicDeviceEntityJpaRepository: ElectronicDeviceEntityJpaRepository
+    val electronicDeviceEntityJpaRepository: ElectronicDeviceEntityJpaRepository,
 ) {
     @Transactional
     fun modify(
@@ -17,6 +17,12 @@ class ElectronicDeviceModifier(
     ) {
         ElectronicDeviceHelper
             .findElectronicDeviceById(electronicDeviceEntityJpaRepository, target.id)
-            .modify(electronicDevice.manufacturer, electronicDevice.model, electronicDevice.serialNumber, electronicDevice.price.value, user.email)
+            .modify(
+                electronicDevice.manufacturer,
+                electronicDevice.model,
+                electronicDevice.serialNumber,
+                electronicDevice.price.value,
+                user.email,
+            )
     }
 }

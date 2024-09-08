@@ -8,7 +8,7 @@ object RestDockUtils {
     fun requestPreprocessor(): OperationRequestPreprocessor {
         return Preprocessors.preprocessRequest(
             Preprocessors.modifyUris().scheme("http").host("dev.woorinpang.io").removePort(),
-            Preprocessors.prettyPrint()
+            Preprocessors.prettyPrint(),
         )
     }
 

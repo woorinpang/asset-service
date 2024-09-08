@@ -11,22 +11,19 @@ import jakarta.validation.constraints.PositiveOrZero
 data class ModifyElectronicDeviceRequest(
     @field:NotBlank(message = "manufacturer 필수입니다.")
     val manufacturer: String? = null,
-
     @field:NotBlank(message = "model 필수입니다.")
     val model: String? = null,
-
     @field:NotBlank(message = "serialNumber 필수입니다.")
     val serialNumber: String? = null,
-
     @field:NotNull(message = "price 필수입니다.")
     @field:PositiveOrZero(message = "price 0 이상의 값이어야 합니다.")
     val price: Long? = null,
 ) {
     @Throws(CustomMethodArgumentNotValidException::class)
     fun validate() {
-        val errors = mutableListOf<FieldError>().apply {
-
-        }
+        val errors =
+            mutableListOf<FieldError>().apply {
+            }
         if (errors.isNotEmpty()) throw CustomMethodArgumentNotValidException(errors)
     }
 

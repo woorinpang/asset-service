@@ -13,7 +13,7 @@ data class ElectronicDevice private constructor(
             manufacturer: String,
             model: String,
             serialNumber: String,
-            price: Price
+            price: Price,
         ): ElectronicDevice {
             return ElectronicDevice(
                 manufacturer = manufacturer,
@@ -27,7 +27,7 @@ data class ElectronicDevice private constructor(
     fun toEntity(
         assetId: Long,
         type: ElectronicDeviceType,
-        user: String
+        user: String,
     ): ElectronicDeviceEntity {
         return ElectronicDeviceEntity.of(
             assetId = assetId,

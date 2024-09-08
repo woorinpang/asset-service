@@ -7,10 +7,13 @@ import org.springframework.transaction.annotation.Transactional
 
 @Component
 class AssetRemover(
-    val assetEntityJpaRepository: AssetEntityJpaRepository
+    val assetEntityJpaRepository: AssetEntityJpaRepository,
 ) {
     @Transactional
-    fun remove(target: AssetTarget, user: User) {
+    fun remove(
+        target: AssetTarget,
+        user: User,
+    ) {
         AssetHelper
             .findAssetById(assetEntityJpaRepository, target.id)
             .delete(user.email)
