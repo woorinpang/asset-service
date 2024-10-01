@@ -3,7 +3,7 @@ package io.woorinpang.assetservice.core.domain.electronic
 import java.math.BigDecimal
 
 data class Price private constructor(
-    val value: BigDecimal
+    val value: BigDecimal,
 ) {
     companion object {
         val ZERO = of(0L)

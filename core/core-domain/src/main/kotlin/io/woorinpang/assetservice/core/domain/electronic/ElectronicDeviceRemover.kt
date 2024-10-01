@@ -7,12 +7,12 @@ import org.springframework.transaction.annotation.Transactional
 
 @Component
 class ElectronicDeviceRemover(
-    val electronicDeviceEntityJpaRepository: ElectronicDeviceEntityJpaRepository
+    val electronicDeviceEntityJpaRepository: ElectronicDeviceEntityJpaRepository,
 ) {
     @Transactional
     fun remove(
         target: ElectronicDeviceTarget,
-        user: User
+        user: User,
     ) {
         ElectronicDeviceHelper
             .findElectronicDeviceById(electronicDeviceEntityJpaRepository, target.id)

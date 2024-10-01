@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component
 
 @Component
 class SampleTopicProducer {
-
     @Bean
     fun runner1(template: KafkaTemplate<String, String>): ApplicationRunner {
         return ApplicationRunner { template.send("foobar", "test") }

@@ -8,11 +8,9 @@ data class AuthenticatedUser(
     val name: String,
     val role: String,
 ) {
-    fun toUser(): User {
-        return User.of(
-            id = userId,
-            email = email,
-            name = name,
-        )
-    }
+    fun toUser(): User = User.of(
+        id = userId,
+        email = email,
+        name = name,
+    )
 }

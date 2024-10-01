@@ -1,5 +1,10 @@
+@file:Suppress("ktlint:standard:no-wildcard-imports")
+
 package io.woorinpang.assetservice.core.api.config
 
+import java.net.InetAddress
+import java.net.UnknownHostException
+import java.util.*
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.springframework.beans.factory.annotation.Value
@@ -9,13 +14,9 @@ import org.springframework.context.annotation.Primary
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory
 import org.springframework.kafka.core.ConsumerFactory
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory
-import java.net.InetAddress
-import java.net.UnknownHostException
-import java.util.*
 
 @Configuration
 class KafkaConsumerConfig {
-
     @Value("\${spring.kafka.bootstrap-servers}")
     lateinit var hosts: String
 
@@ -28,16 +29,16 @@ class KafkaConsumerConfig {
         return containerFactory
     }
 
-    private fun consumerFactory(): ConsumerFactory<in String, in String> {
-        return DefaultKafkaConsumerFactory(consumerProperties())
-    }
+    private fun consumerFactory(): ConsumerFactory<in String, in String> =
+        DefaultKafkaConsumerFactory(consumerProperties())
 
     private fun consumerProperties(): Map<String, Any> {
-        val hostName: String = try {
-            InetAddress.getLocalHost().hostName + UUID.randomUUID().toString()
-        } catch (e: UnknownHostException) {
-            UUID.randomUUID().toString()
-        }
+        val hostName: String =
+            try {
+                InetAddress.getLocalHost().hostName + UUID.randomUUID().toString()
+            } catch (e: UnknownHostException) {
+                UUID.randomUUID().toString()
+            }
         return hashMapOf(
             ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG to hosts,
             ConsumerConfig.GROUP_ID_CONFIG to hostName,

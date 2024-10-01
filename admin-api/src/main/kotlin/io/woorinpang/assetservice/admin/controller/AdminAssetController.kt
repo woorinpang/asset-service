@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/admin/assets")
 class AdminAssetController(
-    val adminAssetService: AdminAssetService
+    val adminAssetService: AdminAssetService,
 ) {
-
     @GetMapping
     fun findAssets(): ResponseEntity<String> {
         return ResponseEntity.ok().body("asset-service")

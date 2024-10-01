@@ -1,3 +1,5 @@
+@file:Suppress("ktlint:standard:no-wildcard-imports")
+
 package io.woorinpang.assetservice.storage.db.core
 
 import jakarta.persistence.*
@@ -13,11 +15,13 @@ abstract class BaseEntity {
     val id: Long? = null
 
     @CreationTimestamp
-    @Column(updatable = false) @Comment("생성일시")
+    @Column(updatable = false)
+    @Comment("생성일시")
     val createdAt: LocalDateTime? = null
 
     @UpdateTimestamp
-    @Column @Comment("수정일시")
+    @Column
+    @Comment("수정일시")
     var updatedAt: LocalDateTime? = null
         protected set
 }

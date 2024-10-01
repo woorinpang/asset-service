@@ -1,3 +1,5 @@
+@file:Suppress("ktlint:standard:no-wildcard-imports")
+
 package io.woorinpang.assetservice.core.api.controller.electronic
 
 import io.woorinpang.assetservice.core.api.config.AuthenticatedUser
@@ -22,12 +24,13 @@ class ElectronicDeviceController(
         @RequestBody @Valid request: AppendElectronicDeviceRequest,
     ): ApiResponse<DefaultIdResponse> {
         request.validate()
-        val successId = electronicDeviceService.appendElectronicDevice(
-            assetId,
-            authenticatedUser.toUser(),
-            request.toType(),
-            request.toElectronicDevice(),
-        )
+        val successId =
+            electronicDeviceService.appendElectronicDevice(
+                assetId,
+                authenticatedUser.toUser(),
+                request.toType(),
+                request.toElectronicDevice(),
+            )
         return ApiResponse.success(DefaultIdResponse(successId))
     }
 
@@ -53,7 +56,10 @@ class ElectronicDeviceController(
         @PathVariable assetId: Long,
         @PathVariable electronicDeviceId: Long,
     ): ApiResponse<Any> {
-        electronicDeviceService.removeElectronicDevice(ElectronicDeviceTarget(electronicDeviceId), authenticatedUser.toUser())
+        electronicDeviceService.removeElectronicDevice(
+            ElectronicDeviceTarget(electronicDeviceId),
+            authenticatedUser.toUser(),
+        )
         return ApiResponse.success()
     }
 }

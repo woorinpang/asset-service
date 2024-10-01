@@ -7,6 +7,7 @@ import jakarta.persistence.Table
 import org.hibernate.annotations.DynamicUpdate
 import java.math.BigDecimal
 
+@Suppress("ktlint:standard:no-blank-line-in-list")
 @Entity
 @Table(name = "ElectronicDevice")
 @DynamicUpdate
@@ -40,10 +41,17 @@ class ElectronicDeviceEntity(
 
     @Column(name = "updatedBy", columnDefinition = "varchar(60) not null comment '수정자'")
     var updatedBy: String,
-
 ) : BaseEntity() {
     companion object {
-        fun of(assetId: Long, type: String, manufacturer: String, model: String, serialNumber: String, price: BigDecimal, createdBy: String): ElectronicDeviceEntity {
+        fun of(
+            assetId: Long,
+            type: String,
+            manufacturer: String,
+            model: String,
+            serialNumber: String,
+            price: BigDecimal,
+            createdBy: String,
+        ): ElectronicDeviceEntity {
             return ElectronicDeviceEntity(
                 assetId = assetId,
                 type = type,
@@ -57,7 +65,13 @@ class ElectronicDeviceEntity(
         }
     }
 
-    fun modify(manufacturer: String, model: String, serialNumber: String, price: BigDecimal, updatedBy: String) {
+    fun modify(
+        manufacturer: String,
+        model: String,
+        serialNumber: String,
+        price: BigDecimal,
+        updatedBy: String,
+    ) {
         this.manufacturer = manufacturer
         this.model = model
         this.serialNumber = serialNumber

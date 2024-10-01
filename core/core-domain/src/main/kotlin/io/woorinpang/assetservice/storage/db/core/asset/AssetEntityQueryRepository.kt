@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class AssetEntityQueryRepository(
-    val queryFactory: JPAQueryFactory
+    val queryFactory: JPAQueryFactory,
 ) {
     fun findAssets(): List<AssetEntity> {
         return queryFactory

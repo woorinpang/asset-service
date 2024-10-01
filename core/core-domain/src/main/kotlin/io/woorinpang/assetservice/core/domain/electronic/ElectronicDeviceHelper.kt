@@ -6,9 +6,11 @@ import io.woorinpang.assetservice.storage.db.core.electronic.ElectronicDeviceEnt
 import io.woorinpang.assetservice.storage.db.core.electronic.ElectronicDeviceEntityJpaRepository
 
 object ElectronicDeviceHelper {
-    fun findElectronicDeviceById(repository: ElectronicDeviceEntityJpaRepository, id: Long): ElectronicDeviceEntity {
-        return repository
+    fun findElectronicDeviceById(
+        repository: ElectronicDeviceEntityJpaRepository,
+        id: Long,
+    ): ElectronicDeviceEntity =
+        repository
             .findById(id)
             .orElseThrow { CoreDomainException(DomainErrorType.ELECTRONIC_DEVICE_NOT_FOUND) }
-    }
 }

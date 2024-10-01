@@ -11,7 +11,8 @@ class AssetAppender(
     val assetRepository: AssetEntityJpaRepository,
 ) {
     @Transactional
-    fun append(user: User, type: AssetType): Long {
-        return assetRepository.save(AssetEntity.of(userId = user.id, type = type.name, user.email)).id!!
-    }
+    fun append(
+        user: User,
+        type: AssetType,
+    ): Long = assetRepository.save(AssetEntity.of(userId = user.id, type = type.name, user.email)).id!!
 }

@@ -5,6 +5,5 @@ import org.springframework.stereotype.Service
 
 @Service
 class AdminAssetService(
-    val adminAssetEntityQueryRepository: AdminAssetEntityQueryRepository
-) {
-}
+    val adminAssetEntityQueryRepository: AdminAssetEntityQueryRepository,
+)

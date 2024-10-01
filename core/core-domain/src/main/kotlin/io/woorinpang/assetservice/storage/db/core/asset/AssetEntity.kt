@@ -5,6 +5,7 @@ import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.Table
 
+@Suppress("ktlint:standard:no-blank-line-in-list")
 @Entity
 @Table(name = "Asset")
 class AssetEntity(
@@ -22,15 +23,18 @@ class AssetEntity(
 
     @Column(name = "updatedBy", columnDefinition = "varchar(60) not null comment '수정자'")
     var updatedBy: String,
-
 ) : BaseEntity() {
     companion object {
-        fun of(userId: Long, type: String, createdBy: String): AssetEntity {
+        fun of(
+            userId: Long,
+            type: String,
+            createdBy: String,
+        ): AssetEntity {
             return AssetEntity(
                 userId = userId,
                 type = type,
                 createdBy = createdBy,
-                updatedBy = createdBy
+                updatedBy = createdBy,
             )
         }
     }
