@@ -9,7 +9,5 @@ class AssetFinder(
     val assetEntityJpaRepository: AssetEntityJpaRepository,
 ) {
     @Transactional(readOnly = true)
-    fun find(target: AssetTarget): Asset {
-        return Asset.of(AssetHelper.findAssetById(assetEntityJpaRepository, target.id))
-    }
+    fun find(target: AssetTarget): Asset = Asset.of(AssetHelper.findAssetById(assetEntityJpaRepository, target.id))
 }

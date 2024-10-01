@@ -5,17 +5,22 @@ import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.Table
 
+@Suppress("ktlint:standard:no-blank-line-in-list")
 @Entity
 @Table(name = "Asset")
 class AssetEntity(
     @Column
     val userId: Long,
+
     @Column(name = "assetType")
     val type: String,
+
     @Column(name = "deleted")
     private var deleted: Boolean = false,
+
     @Column(name = "createdBy", columnDefinition = "varchar(60) not null comment '생성자'")
     val createdBy: String,
+
     @Column(name = "updatedBy", columnDefinition = "varchar(60) not null comment '수정자'")
     var updatedBy: String,
 ) : BaseEntity() {

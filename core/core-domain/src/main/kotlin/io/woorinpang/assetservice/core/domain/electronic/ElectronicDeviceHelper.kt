@@ -9,9 +9,8 @@ object ElectronicDeviceHelper {
     fun findElectronicDeviceById(
         repository: ElectronicDeviceEntityJpaRepository,
         id: Long,
-    ): ElectronicDeviceEntity {
-        return repository
+    ): ElectronicDeviceEntity =
+        repository
             .findById(id)
             .orElseThrow { CoreDomainException(DomainErrorType.ELECTRONIC_DEVICE_NOT_FOUND) }
-    }
 }

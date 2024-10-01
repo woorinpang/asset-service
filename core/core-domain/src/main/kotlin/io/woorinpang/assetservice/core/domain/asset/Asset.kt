@@ -8,12 +8,11 @@ data class Asset(
     val type: AssetType,
 ) {
     companion object {
-        fun of(entity: AssetEntity): Asset {
-            return Asset(
+        fun of(entity: AssetEntity): Asset =
+            Asset(
                 id = entity.id,
                 userId = entity.userId,
                 type = AssetType.valueOf(entity.type),
             )
-        }
     }
 }

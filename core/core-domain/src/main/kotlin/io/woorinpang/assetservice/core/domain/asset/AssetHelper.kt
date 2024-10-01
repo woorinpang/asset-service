@@ -9,9 +9,8 @@ object AssetHelper {
     fun findAssetById(
         repository: AssetEntityJpaRepository,
         userId: Long,
-    ): AssetEntity {
-        return repository
+    ): AssetEntity =
+        repository
             .findById(userId)
             .orElseThrow { CoreDomainException(DomainErrorType.ASSET_NOT_FOUND) }
-    }
 }

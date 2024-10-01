@@ -18,9 +18,7 @@ class AssetService(
         return assetAppender.append(user, type)
     }
 
-    fun findAsset(target: AssetTarget): Asset {
-        return assetFinder.find(target)
-    }
+    fun findAsset(target: AssetTarget): Asset = assetFinder.find(target)
 
     fun deleteAsset(
         target: AssetTarget,

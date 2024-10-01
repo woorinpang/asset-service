@@ -1,3 +1,5 @@
+@file:Suppress("ktlint:standard:no-wildcard-imports")
+
 package io.woorinpang.assetservice.core.api.controller.asset
 
 import io.woorinpang.assetservice.core.api.config.AuthenticatedUser
@@ -33,11 +35,8 @@ class AssetController(
     }
 
     @GetMapping("/{assetId}")
-    fun findAsset(
-        @PathVariable assetId: Long,
-    ): ApiResponse<FindAssetResponse> {
-        return ApiResponse.success(FindAssetResponse.of(assetService.findAsset(AssetTarget(assetId))))
-    }
+    fun findAsset(@PathVariable assetId: Long): ApiResponse<FindAssetResponse> =
+        ApiResponse.success(FindAssetResponse.of(assetService.findAsset(AssetTarget(assetId))))
 
     @DeleteMapping("/{assetId}")
     fun deleteAsset(

@@ -1,3 +1,5 @@
+@file:Suppress("ktlint:standard:no-wildcard-imports")
+
 package io.woorinpang.assetservice.storage.db.core
 
 import jakarta.persistence.*

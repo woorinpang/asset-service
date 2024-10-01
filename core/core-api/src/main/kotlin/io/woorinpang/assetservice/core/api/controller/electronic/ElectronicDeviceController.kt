@@ -1,3 +1,5 @@
+@file:Suppress("ktlint:standard:no-wildcard-imports")
+
 package io.woorinpang.assetservice.core.api.controller.electronic
 
 import io.woorinpang.assetservice.core.api.config.AuthenticatedUser

@@ -27,7 +27,8 @@ class AssetValidator(
         user: User,
         type: AssetType,
     ) {
-        assetEntityJpaRepository.existsByUserIdAndType(user.id, type.name)
+        assetEntityJpaRepository
+            .existsByUserIdAndType(user.id, type.name)
             .takeIf { it }
             ?.let { throw CoreDomainException(DomainErrorType.ASSET_USER_ID_AND_TYPE_ALREADY_EXISTS) }
     }
@@ -40,15 +41,18 @@ class AssetValidator(
     ) {
         val findAsset = AssetHelper.findAssetById(assetEntityJpaRepository, target.id)
 
-        findAsset.equalAssetType(type.name)
+        findAsset
+            .equalAssetType(type.name)
             .takeIf { it }
             ?: throw CoreDomainException(DomainErrorType.ASSET_TYPE_NOT_EQUAL)
 
-        findAsset.equalUserId(user.id)
+        findAsset
+            .equalUserId(user.id)
             .takeIf { it }
             ?: throw CoreDomainException(DomainErrorType.ASSET_USER_ID_NOT_EQUAL)
 
-        findAsset.isDeleted()
+        findAsset
+            .isDeleted()
             .takeIf { it }
             ?.let { throw CoreDomainException(DomainErrorType.ASSET_DELETED) }
     }

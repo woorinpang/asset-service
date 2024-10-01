@@ -14,22 +14,21 @@ data class ElectronicDevice private constructor(
             model: String,
             serialNumber: String,
             price: Price,
-        ): ElectronicDevice {
-            return ElectronicDevice(
+        ): ElectronicDevice =
+            ElectronicDevice(
                 manufacturer = manufacturer,
                 model = model,
                 serialNumber = serialNumber,
                 price = price,
             )
-        }
     }
 
     fun toEntity(
         assetId: Long,
         type: ElectronicDeviceType,
         user: String,
-    ): ElectronicDeviceEntity {
-        return ElectronicDeviceEntity.of(
+    ): ElectronicDeviceEntity =
+        ElectronicDeviceEntity.of(
             assetId = assetId,
             type = type.name,
             manufacturer = manufacturer,
@@ -38,5 +37,4 @@ data class ElectronicDevice private constructor(
             price = price.value,
             createdBy = user,
         )
-    }
 }

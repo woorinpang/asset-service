@@ -21,7 +21,5 @@ data class AppendAssetRequest(
         if (errors.isNotEmpty()) throw CustomMethodArgumentNotValidException(errors)
     }
 
-    fun toAssetType(): AssetType {
-        return AssetType.valueOf(assetType!!)
-    }
+    fun toAssetType(): AssetType = AssetType.valueOf(assetType!!)
 }

@@ -7,28 +7,38 @@ import jakarta.persistence.Table
 import org.hibernate.annotations.DynamicUpdate
 import java.math.BigDecimal
 
+@Suppress("ktlint:standard:no-blank-line-in-list")
 @Entity
 @Table(name = "ElectronicDevice")
 @DynamicUpdate
 class ElectronicDeviceEntity(
     @Column(name = "assetId", columnDefinition = "bigint not null comment '자산 고유번호'")
     val assetId: Long,
+
     @Column(name = "electronicDeviceType", columnDefinition = "varchar(30) not null comment '전자기기 타입'")
     val type: String,
+
     @Column(name = "manufacturer", columnDefinition = "varchar(255) not null comment '제조사'")
     private var manufacturer: String,
+
     @Column(name = "model", columnDefinition = "varchar(255) null comment '모델명'")
     private var model: String? = null,
+
     @Column(name = "serialNumber", columnDefinition = "varchar(255) null comment '시리얼 번호'")
     private var serialNumber: String? = null,
+
     @Column(name = "price", columnDefinition = "decimal default 0 not null comment '가격'")
     private var price: BigDecimal,
+
     @Column(name = "isForSale", columnDefinition = "bit default b'0' not null comment '판매 등록 여부'")
     private var isForSale: Boolean = false,
+
     @Column(name = "deleted", columnDefinition = "bit default b'0' not null comment '삭제 여부'")
     private var deleted: Boolean = false,
+
     @Column(name = "createdBy", columnDefinition = "varchar(60) not null comment '생성자'")
     val createdBy: String,
+
     @Column(name = "updatedBy", columnDefinition = "varchar(60) not null comment '수정자'")
     var updatedBy: String,
 ) : BaseEntity() {
