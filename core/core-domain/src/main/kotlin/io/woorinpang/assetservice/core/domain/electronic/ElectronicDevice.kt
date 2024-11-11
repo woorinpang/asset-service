@@ -1,40 +1,25 @@
 package io.woorinpang.assetservice.core.domain.electronic
 
-import io.woorinpang.assetservice.storage.db.core.electronic.ElectronicDeviceEntity
+import java.math.BigDecimal
 
 data class ElectronicDevice private constructor(
     val manufacturer: String,
-    val model: String,
-    val serialNumber: String,
+    val model: String?,
+    val serialNumber: String?,
     val price: Price,
 ) {
     companion object {
         fun of(
             manufacturer: String,
-            model: String,
-            serialNumber: String,
-            price: Price,
+            model: String?,
+            serialNumber: String?,
+            price: BigDecimal,
         ): ElectronicDevice =
             ElectronicDevice(
                 manufacturer = manufacturer,
                 model = model,
                 serialNumber = serialNumber,
-                price = price,
+                price = Price.of(price),
             )
     }
-
-    fun toEntity(
-        assetId: Long,
-        type: ElectronicDeviceType,
-        user: String,
-    ): ElectronicDeviceEntity =
-        ElectronicDeviceEntity.of(
-            assetId = assetId,
-            type = type.name,
-            manufacturer = manufacturer,
-            model = model,
-            serialNumber = serialNumber,
-            price = price.value,
-            createdBy = user,
-        )
 }

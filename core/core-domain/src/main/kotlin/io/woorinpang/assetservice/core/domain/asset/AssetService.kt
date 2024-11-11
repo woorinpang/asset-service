@@ -1,6 +1,7 @@
 package io.woorinpang.assetservice.core.domain.asset
 
 import io.woorinpang.assetservice.core.domain.user.User
+import io.woorinpang.assetservice.core.enums.AssetType
 import org.springframework.stereotype.Service
 
 @Service
@@ -14,7 +15,7 @@ class AssetService(
         user: User,
         type: AssetType,
     ): Long {
-        assetValidator.validExistsUserIdAndType(user, type)
+        assetValidator.existsUserIdAndType(user, type)
         return assetAppender.append(user, type)
     }
 

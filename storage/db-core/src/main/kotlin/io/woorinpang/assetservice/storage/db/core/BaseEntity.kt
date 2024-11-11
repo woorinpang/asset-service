@@ -12,16 +12,16 @@ import java.time.LocalDateTime
 abstract class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null
+    val id: Long = 0
 
     @CreationTimestamp
     @Column(updatable = false)
     @Comment("생성일시")
-    val createdAt: LocalDateTime? = null
+    val createdAt: LocalDateTime = LocalDateTime.now()
 
     @UpdateTimestamp
     @Column
     @Comment("수정일시")
-    var updatedAt: LocalDateTime? = null
+    var updatedAt: LocalDateTime = LocalDateTime.now()
         protected set
 }

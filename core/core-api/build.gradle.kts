@@ -8,6 +8,8 @@ tasks.getByName("jar") {
 
 dependencies {
     implementation(project(":core:core-domain"))
+    implementation(project(":core:core-enum"))
+    runtimeOnly(project(":storage:db-core"))
     implementation(project(":support:logging"))
     implementation(project(":support:monitoring"))
 //    implementation(project(":infra:kafka"))

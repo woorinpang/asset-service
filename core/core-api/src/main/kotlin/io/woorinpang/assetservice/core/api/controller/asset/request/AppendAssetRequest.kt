@@ -2,7 +2,7 @@ package io.woorinpang.assetservice.core.api.controller.asset.request
 
 import io.woorinpang.assetservice.core.api.support.error.CustomMethodArgumentNotValidException
 import io.woorinpang.assetservice.core.api.support.error.FieldError
-import io.woorinpang.assetservice.core.domain.asset.AssetType
+import io.woorinpang.assetservice.core.enums.AssetType
 import jakarta.validation.constraints.NotBlank
 
 data class AppendAssetRequest(

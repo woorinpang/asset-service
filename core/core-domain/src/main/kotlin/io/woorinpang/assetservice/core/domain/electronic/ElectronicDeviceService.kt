@@ -1,7 +1,7 @@
 package io.woorinpang.assetservice.core.domain.electronic
 
 import io.woorinpang.assetservice.core.domain.asset.AssetTarget
-import io.woorinpang.assetservice.core.domain.asset.AssetType
+import io.woorinpang.assetservice.core.enums.AssetType
 import io.woorinpang.assetservice.core.domain.asset.AssetValidator
 import io.woorinpang.assetservice.core.domain.user.User
 import org.springframework.stereotype.Component
