@@ -23,3 +23,5 @@ ktlint_standard_no-blank-lines-in-chained-method-calls=disabled
 ktlint_standard_no-multi-spaces=disabled
 ktlint_standard_string-template=disabled
 ktlint_standard_multiline-if-else=disabled
+ktlint_standard_function-signature=disabled
+ktlint_standard_class-signature=disabled

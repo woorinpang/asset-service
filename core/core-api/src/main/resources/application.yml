@@ -29,7 +29,5 @@ spring.config.activate.on-profile: local
 server:
   port: 9040
 
-
-
 ---
 spring.config.activate.on-profile: local-dev

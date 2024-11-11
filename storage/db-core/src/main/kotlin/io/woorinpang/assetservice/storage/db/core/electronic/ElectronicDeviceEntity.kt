@@ -1,8 +1,11 @@
 package io.woorinpang.assetservice.storage.db.core.electronic
 
+import io.woorinpang.assetservice.core.domain.electronic.ElectronicDeviceType
 import io.woorinpang.assetservice.storage.db.core.BaseEntity
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
+import jakarta.persistence.EnumType
+import jakarta.persistence.Enumerated
 import jakarta.persistence.Table
 import org.hibernate.annotations.DynamicUpdate
 import java.math.BigDecimal
@@ -16,19 +19,20 @@ class ElectronicDeviceEntity(
     val assetId: Long,
 
     @Column(name = "electronicDeviceType", columnDefinition = "varchar(30) not null comment '전자기기 타입'")
-    val type: String,
+    @Enumerated(EnumType.STRING)
+    val type: ElectronicDeviceType,
 
     @Column(name = "manufacturer", columnDefinition = "varchar(255) not null comment '제조사'")
-    private var manufacturer: String,
+    var manufacturer: String,
 
     @Column(name = "model", columnDefinition = "varchar(255) null comment '모델명'")
-    private var model: String? = null,
+    var model: String? = null,
 
     @Column(name = "serialNumber", columnDefinition = "varchar(255) null comment '시리얼 번호'")
-    private var serialNumber: String? = null,
+    var serialNumber: String? = null,
 
     @Column(name = "price", columnDefinition = "decimal default 0 not null comment '가격'")
-    private var price: BigDecimal,
+    var price: BigDecimal,
 
     @Column(name = "isForSale", columnDefinition = "bit default b'0' not null comment '판매 등록 여부'")
     private var isForSale: Boolean = false,
@@ -45,10 +49,10 @@ class ElectronicDeviceEntity(
     companion object {
         fun of(
             assetId: Long,
-            type: String,
+            type: ElectronicDeviceType,
             manufacturer: String,
-            model: String,
-            serialNumber: String,
+            model: String?,
+            serialNumber: String?,
             price: BigDecimal,
             createdBy: String,
         ): ElectronicDeviceEntity {
@@ -84,7 +88,5 @@ class ElectronicDeviceEntity(
         this.updatedBy = updatedBy
     }
 
-    fun equalCreatedBy(createdBy: String): Boolean {
-        return this.createdBy == createdBy
-    }
+    fun equalCreatedBy(createdBy: String): Boolean = this.createdBy == createdBy
 }

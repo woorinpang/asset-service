@@ -7,7 +7,7 @@ import io.woorinpang.assetservice.core.api.config.AuthenticatedUser
 import io.woorinpang.assetservice.core.api.controller.asset.request.AppendAssetRequest
 import io.woorinpang.assetservice.core.domain.asset.Asset
 import io.woorinpang.assetservice.core.domain.asset.AssetService
-import io.woorinpang.assetservice.core.domain.asset.AssetType
+import io.woorinpang.assetservice.core.enums.AssetType
 import io.woorinpang.assetservice.tests.api.docs.RestDockUtils.requestPreprocessor
 import io.woorinpang.assetservice.tests.api.docs.RestDockUtils.responsePreprocessor
 import io.woorinpang.assetservice.tests.api.docs.RestDocsTest

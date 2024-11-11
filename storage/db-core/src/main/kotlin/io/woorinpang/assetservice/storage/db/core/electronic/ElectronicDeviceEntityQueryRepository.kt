@@ -14,12 +14,13 @@ class ElectronicDeviceEntityQueryRepository(
     fun findElectronicDevices(
         condition: ElectronicDeviceSearchCondition,
         pageable: Pageable,
-    ): List<ElectronicDeviceEntity> =
-        queryFactory
+    ): List<ElectronicDeviceEntity> {
+        return queryFactory
             .select(electronicDeviceEntity)
             .from(electronicDeviceEntity)
             .offset(pageable.offset)
             .limit(pageable.pageSize.toLong())
             .orderBy(electronicDeviceEntity.id.desc())
             .fetch()
+    }
 }

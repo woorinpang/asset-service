@@ -1,9 +1,6 @@
-package io.woorinpang.assetservice.core.domain.asset
+package io.woorinpang.assetservice.core.enums
 
-enum class AssetType(
-    val code: String,
-    val description: String,
-) {
+enum class AssetType(val code: String, val description: String) {
     ELECTRONIC("ELECTRONIC", "전자기기"),
     ;
 
