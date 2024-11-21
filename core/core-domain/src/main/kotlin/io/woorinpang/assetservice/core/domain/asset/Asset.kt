@@ -12,7 +12,14 @@ data class Asset private constructor(
     val deleted: Boolean,
 ) {
     companion object {
-        fun of(assetId: Long, userId: Long, assetType: AssetType, createdBy: String, createdAt: LocalDateTime, deleted: Boolean): Asset =
+        fun of(
+            assetId: Long,
+            userId: Long,
+            assetType: AssetType,
+            createdBy: String,
+            createdAt: LocalDateTime,
+            deleted: Boolean
+        ): Asset =
             Asset(
                 id = assetId,
                 userId = userId,

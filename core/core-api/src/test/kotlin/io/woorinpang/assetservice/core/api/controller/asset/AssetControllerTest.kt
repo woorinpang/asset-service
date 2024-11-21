@@ -18,6 +18,7 @@ import org.springframework.restdocs.payload.JsonFieldType
 import org.springframework.restdocs.payload.PayloadDocumentation.*
 import org.springframework.restdocs.request.RequestDocumentation
 import org.springframework.restdocs.request.RequestDocumentation.parameterWithName
+import java.time.LocalDateTime
 
 class AssetControllerTest : RestDocsTest() {
     private lateinit var assetService: AssetService
@@ -67,7 +68,7 @@ class AssetControllerTest : RestDocsTest() {
 //    @DisplayName("자산을 조회하면 상태코드 200과 FindAssetResponse 객체를 반환한다")
 //    @Test
     fun findAssetTest() {
-        every { assetService.findAsset(any()) } returns Asset(1, 1, AssetType.ELECTRONIC)
+        every { assetService.findAsset(any()) } returns Asset.of(1, 1, AssetType.ELECTRONIC, "dev.heechul@gmail.com", LocalDateTime.now(), false)
 
         given()
             .contentType(ContentType.JSON)
