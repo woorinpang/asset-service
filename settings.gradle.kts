@@ -1,12 +1,12 @@
 rootProject.name = "WRP-ASSET-SERVICE"
 
 include(
+    "admin-api",
     "core:core-api",
     "core:core-domain",
     "core:core-enum",
-    "admin-api",
-    "storage:db-core",
     "infra:kafka",
+    "storage:db-core",
     "support:logging",
     "support:monitoring",
     "tests:api-docs",

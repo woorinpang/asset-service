@@ -1,8 +1,8 @@
-tasks.getByName("bootJar") {
+tasks.named<Jar>("bootJar").configure {
     enabled = true
 }
 
-tasks.getByName("jar") {
+tasks.named<Jar>("jar").configure {
     enabled = false
 }
 
@@ -16,13 +16,9 @@ dependencies {
 
     testImplementation(project(":tests:api-docs"))
 
-    testImplementation(project(":tests:api-docs"))
-
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-validation")
 
     implementation("org.springframework.cloud:spring-cloud-starter-config")
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
-
-//    implementation("org.springframework.kafka:spring-kafka")
 }

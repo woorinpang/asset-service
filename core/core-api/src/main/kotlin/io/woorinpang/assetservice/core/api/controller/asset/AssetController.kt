@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/assets")
+@RequestMapping("/v1/assets")
 class AssetController(
     val assetService: AssetService,
 ) {

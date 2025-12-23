@@ -12,12 +12,6 @@ plugins {
     id("org.jlleitschuh.gradle.ktlint") apply false
 }
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of("${project.property("javaVersion")}")
-    }
-}
-
 allprojects {
     group = "${property("projectGroup")}"
     version = "${property("applicationVersion")}"
@@ -45,31 +39,85 @@ subprojects {
 
     dependencies {
         implementation("org.jetbrains.kotlin:kotlin-reflect")
-        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-        testImplementation("org.springframework.boot:spring-boot-starter-test")
-        testImplementation("com.ninja-squad:springmockk:${property("springMockkVersion")}")
         annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
-        kapt("org.springframework.boot:spring-boot-configuration-processor")
+        testImplementation("org.springframework.boot:spring-boot-starter-test")
+        testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+        testImplementation("org.assertj:assertj-core")
+        testImplementation("com.ninja-squad:springmockk:${property("springMockkVersion")}")
     }
 
-    tasks.getByName("bootJar") {
-        enabled = false
-    }
-
-    tasks.getByName("jar") {
-        enabled = true
-    }
-
-    java.sourceCompatibility = JavaVersion.valueOf("VERSION_${property("javaVersion")}")
-    tasks.withType<KotlinCompile> {
-        kotlinOptions {
-            freeCompilerArgs = listOf("-Xjsr305=strict")
-            jvmTarget = "${project.property("javaVersion")}"
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of("${property("javaVersion")}")
         }
     }
 
-    tasks.withType<Test> {
-        useJUnitPlatform()
+    kotlin {
+        compilerOptions {
+            freeCompilerArgs.addAll("-Xjsr305=strict", "-Xannotation-default-target=param-property")
+        }
+    }
+
+    tasks.named<Jar>("bootJar").configure {
+        enabled = false
+    }
+
+    tasks.named<Jar>("jar").configure {
+        enabled = true
+    }
+
+    tasks.test {
+        useJUnitPlatform {
+            excludeTags("develop", "restdocs")
+        }
+    }
+
+    testing {
+        suites {
+            named<JvmTestSuite>("test") {
+                targets {
+                    register("unitTest") {
+                        testTask.configure {
+                            group = "verification"
+                            useJUnitPlatform {
+                                excludeTags("develop", "context", "restdocs")
+                            }
+                        }
+                    }
+
+                    register("contextTest") {
+                        testTask.configure {
+                            group = "verification"
+                            useJUnitPlatform {
+                                includeTags("context")
+                            }
+                        }
+                    }
+
+                    register("restDocsTest") {
+                        testTask.configure {
+                            group = "verification"
+                            useJUnitPlatform {
+                                includeTags("restdocs")
+                            }
+                        }
+                    }
+
+                    register("developTest") {
+                        testTask.configure {
+                            group = "verification"
+                            useJUnitPlatform {
+                                includeTags("develop")
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    tasks.named("asciidoctor").configure {
+        dependsOn("restDocsTest")
     }
 }
