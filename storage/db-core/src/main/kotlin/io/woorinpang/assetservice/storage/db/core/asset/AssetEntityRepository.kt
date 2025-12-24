@@ -2,7 +2,6 @@ package io.woorinpang.assetservice.storage.db.core.asset
 
 import io.woorinpang.assetservice.core.domain.asset.Asset
 import io.woorinpang.assetservice.core.domain.asset.AssetRepository
-import io.woorinpang.assetservice.core.domain.user.User
 import io.woorinpang.assetservice.core.enums.AssetType
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Repository
@@ -13,8 +12,8 @@ class AssetEntityRepository(
     val assetEntityJpaRepository: AssetEntityJpaRepository,
 ) : AssetRepository {
     @Transactional
-    override fun append(userId: Long, type: AssetType, email: String): Long {
-        val assetEntity = AssetEntity.of(userId, type, email)
+    override fun append(userId: Long, type: AssetType, createdBy: Long): Long {
+        val assetEntity = AssetEntity.of(userId, type, createdBy)
         return assetEntityJpaRepository.save(assetEntity).id
     }
 
@@ -34,8 +33,8 @@ class AssetEntityRepository(
     }
 
     @Transactional
-    override fun removeAsset(assetId: Long, user: User) {
-        assetEntityJpaRepository.findByIdOrNull(assetId)?.delete(user.email)
+    override fun removeAsset(assetId: Long, updatedBy: Long) {
+        assetEntityJpaRepository.findByIdOrNull(assetId)?.delete(updatedBy)
     }
 
     override fun existsByUserIdAndType(id: Long, type: AssetType): Boolean {

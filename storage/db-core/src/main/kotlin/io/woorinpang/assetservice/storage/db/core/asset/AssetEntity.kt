@@ -21,14 +21,14 @@ class AssetEntity(
     @Column(name = "deleted")
     var deleted: Boolean = false,
 
-    @Column(name = "createdBy", columnDefinition = "varchar(60) not null comment '생성자'")
-    val createdBy: String,
+    @Column(name = "createdBy")
+    val createdBy: Long,
 
-    @Column(name = "updatedBy", columnDefinition = "varchar(60) not null comment '수정자'")
-    var updatedBy: String,
+    @Column(name = "updatedBy")
+    var updatedBy: Long,
 ) : BaseEntity() {
     companion object {
-        fun of(userId: Long, type: AssetType, createdBy: String): AssetEntity = AssetEntity(
+        fun of(userId: Long, type: AssetType, createdBy: Long): AssetEntity = AssetEntity(
             userId = userId,
             type = type,
             createdBy = createdBy,
@@ -36,12 +36,12 @@ class AssetEntity(
         )
     }
 
-    fun delete(updatedBy: String) {
+    fun delete(updatedBy: Long) {
         this.deleted = true
         this.updatedBy = updatedBy
     }
 
-    fun equalCreatedBy(createdBy: String): Boolean = this.createdBy == createdBy
+    fun equalCreatedBy(createdBy: Long): Boolean = this.createdBy == createdBy
 
     fun equalAssetType(type: AssetType): Boolean = this.type == type
 

@@ -1,6 +1,5 @@
 package io.woorinpang.assetservice.core.domain.asset
 
-import io.woorinpang.assetservice.core.domain.user.User
 import io.woorinpang.assetservice.core.enums.AssetType
 import org.springframework.stereotype.Component
 
@@ -8,5 +7,5 @@ import org.springframework.stereotype.Component
 class AssetAppender(
     val assetRepository: AssetRepository,
 ) {
-    fun append(user: User, type: AssetType): Long = assetRepository.append(user.id, type, user.email)
+    fun append(userId: Long, type: AssetType): Long = assetRepository.append(userId, type, userId)
 }

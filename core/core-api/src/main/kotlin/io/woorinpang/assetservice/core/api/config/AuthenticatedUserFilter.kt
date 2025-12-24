@@ -30,7 +30,7 @@ class AuthenticatedUserFilter : OncePerRequestFilter() {
                         decodedUser,
                         AuthenticatedUser::class.java,
                     )
-                request.setAttribute("authenticatedUser", authenticatedUser)
+                request.setAttribute("userId", authenticatedUser.userId)
             } catch (e: Exception) {
                 e.printStackTrace()
             }

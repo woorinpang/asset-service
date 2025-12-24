@@ -10,21 +10,15 @@ import org.springframework.stereotype.Component
 class AssetValidator(
     val assetRepository: AssetRepository,
 ) {
-    fun validCreatedBy(
-        target: AssetTarget,
-        user: User,
-    ) {
+    fun validCreatedBy(target: AssetTarget) {
         val findAsset = AssetHelper.findAssetById(assetRepository, target.id)
-        if(findAsset.createdBy != user.email) {
-            throw CoreDomainException(DomainErrorType.ASSET_CREATED_BY_NOT_EQUAL)
-        }
     }
 
     fun existsUserIdAndType(
-        user: User,
+        userId: Long,
         type: AssetType,
     ) {
-        val existsByUserIdAndType = assetRepository.existsByUserIdAndType(user.id, type)
+        val existsByUserIdAndType = assetRepository.existsByUserIdAndType(userId, type)
         if (existsByUserIdAndType) {
             throw CoreDomainException(DomainErrorType.ASSET_USER_ID_AND_TYPE_ALREADY_EXISTS)
         }

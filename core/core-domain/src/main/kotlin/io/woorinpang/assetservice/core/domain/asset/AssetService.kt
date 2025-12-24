@@ -1,6 +1,5 @@
 package io.woorinpang.assetservice.core.domain.asset
 
-import io.woorinpang.assetservice.core.domain.user.User
 import io.woorinpang.assetservice.core.enums.AssetType
 import org.springframework.stereotype.Service
 
@@ -12,20 +11,20 @@ class AssetService(
     val assetValidator: AssetValidator,
 ) {
     fun appendAsset(
-        user: User,
+        userId: Long,
         type: AssetType,
     ): Long {
-        assetValidator.existsUserIdAndType(user, type)
-        return assetAppender.append(user, type)
+        assetValidator.existsUserIdAndType(userId, type)
+        return assetAppender.append(userId, type)
     }
 
     fun findAsset(target: AssetTarget): Asset = assetFinder.find(target)
 
     fun deleteAsset(
         target: AssetTarget,
-        user: User,
+        userId: Long,
     ): Any {
-        assetValidator.validCreatedBy(target, user)
-        return assetRemover.remove(target, user)
+        assetValidator.validCreatedBy(target)
+        return assetRemover.remove(target, userId)
     }
 }

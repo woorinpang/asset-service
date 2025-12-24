@@ -2,7 +2,6 @@
 
 package io.woorinpang.assetservice.core.api.controller.asset
 
-import io.woorinpang.assetservice.core.api.config.AuthenticatedUser
 import io.woorinpang.assetservice.core.api.controller.asset.request.AppendAssetRequest
 import io.woorinpang.assetservice.core.api.controller.asset.response.FindAssetResponse
 import io.woorinpang.assetservice.core.api.support.response.ApiResponse
@@ -26,11 +25,11 @@ class AssetController(
 ) {
     @PostMapping
     fun appendAsset(
-        @RequestAttribute("authenticatedUser") authenticatedUser: AuthenticatedUser,
+        @RequestAttribute userId: Long,
         @RequestBody @Valid request: AppendAssetRequest,
     ): ApiResponse<DefaultIdResponse> {
         request.validate()
-        val successId = assetService.appendAsset(authenticatedUser.toUser(), request.toAssetType())
+        val successId = assetService.appendAsset(userId, request.toAssetType())
         return ApiResponse.success(DefaultIdResponse(successId))
     }
 
@@ -40,10 +39,10 @@ class AssetController(
 
     @DeleteMapping("/{assetId}")
     fun deleteAsset(
-        @RequestAttribute("authenticatedUser") authenticatedUser: AuthenticatedUser,
+        @RequestAttribute userId: Long,
         @PathVariable assetId: Long,
     ): ApiResponse<Any> {
-        assetService.deleteAsset(AssetTarget(assetId), authenticatedUser.toUser())
+        assetService.deleteAsset(AssetTarget(assetId), userId)
         return ApiResponse.success()
     }
 }

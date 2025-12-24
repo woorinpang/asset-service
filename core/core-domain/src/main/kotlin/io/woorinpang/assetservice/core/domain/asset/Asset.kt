@@ -7,7 +7,7 @@ data class Asset private constructor(
     val id: Long?,
     val userId: Long,
     val type: AssetType,
-    val createdBy: String,
+    val createdBy: Long,
     val createdAt: LocalDateTime,
     val deleted: Boolean,
 ) {
@@ -16,7 +16,7 @@ data class Asset private constructor(
             assetId: Long,
             userId: Long,
             assetType: AssetType,
-            createdBy: String,
+            createdBy: Long,
             createdAt: LocalDateTime,
             deleted: Boolean
         ): Asset =

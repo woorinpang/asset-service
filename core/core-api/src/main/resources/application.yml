@@ -23,5 +23,10 @@ spring.config.activate.on-profile: local
 server:
   port: 9040
 
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+
 ---
 spring.config.activate.on-profile: local-dev

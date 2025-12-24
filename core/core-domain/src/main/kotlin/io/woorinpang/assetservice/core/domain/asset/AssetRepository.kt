@@ -4,11 +4,11 @@ import io.woorinpang.assetservice.core.domain.user.User
 import io.woorinpang.assetservice.core.enums.AssetType
 
 interface AssetRepository {
-    fun append(userId: Long, type: AssetType, email: String): Long
+    fun append(userId: Long, type: AssetType, createdBy: Long): Long
 
     fun findAsset(assetId: Long): Asset?
 
-    fun removeAsset(assetId: Long, user: User)
+    fun removeAsset(assetId: Long, updatedBy: Long)
 
-    fun existsByUserIdAndType(id: Long, name: AssetType): Boolean
+    fun existsByUserIdAndType(id: Long, type: AssetType): Boolean
 }

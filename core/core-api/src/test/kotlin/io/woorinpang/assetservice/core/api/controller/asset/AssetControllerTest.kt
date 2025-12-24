@@ -25,20 +25,22 @@ import java.time.LocalDateTime
 
 class AssetControllerTest : RestDocsTest() {
     private lateinit var assetService: AssetService
-    private lateinit var controller: AssetController
 
     @BeforeEach
     fun setUp() {
         assetService = mockk()
-        controller = AssetController(assetService)
-        mockMvc = mockController(controller)
+        mockMvc = mockController(AssetController(assetService))
+    }
+
+    @Test
+    fun test() {
+        print("hi")
     }
 
     @DisplayName("자산등록하면 상태코드 200과 AppendAssetResponse 객체를 반환한다")
     @Test
     fun appendAssetTest() {
         every { assetService.appendAsset(any(), any()) } returns 1
-        val authenticatedUser = AuthenticatedUser(1, "heechul@google.com", "희철", "USER")
 
         mockMvc.perform(
             post("/v1/assets")
@@ -67,7 +69,7 @@ class AssetControllerTest : RestDocsTest() {
 //    @DisplayName("자산을 조회하면 상태코드 200과 FindAssetResponse 객체를 반환한다")
 //    @Test
     fun findAssetTest() {
-        every { assetService.findAsset(any()) } returns Asset.of(1, 1, AssetType.ELECTRONIC, "dev.heechul@gmail.com", LocalDateTime.now(), false)
+        every { assetService.findAsset(any()) } returns Asset.of(1, 1, AssetType.ELECTRONIC, 1, LocalDateTime.now(), false)
 
 //        given()
 //            .contentType(ContentType.JSON)

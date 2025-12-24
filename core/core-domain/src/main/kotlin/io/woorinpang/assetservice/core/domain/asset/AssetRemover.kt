@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component
 class AssetRemover(
     val assetRepository: AssetRepository,
 ) {
-    fun remove(target: AssetTarget, user: User) {
-        assetRepository.removeAsset(target.id, user)
+    fun remove(target: AssetTarget, userId: Long) {
+        assetRepository.removeAsset(target.id, userId)
     }
 }
